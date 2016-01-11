@@ -61,7 +61,7 @@
 			<label class="col-sm-2 control-label" for="fecha"> </label>
 		  </fieldset>
         </div>
-		<form class="form-horizontal" action="security" method="POST">
+		<form class="form-horizontal" action="security" method="GET">
 			<input type="hidden"  name="action" value="newUser">
 			<br>
 			<div class="form-group">
@@ -71,7 +71,7 @@
                     <label class="col-sm-2 control-label" for="Nombre">Escribe tu nombre&#58;</label>
                     <div class="input-group col-sm-3">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-  			<input type="text" class="form-control" name="name" placeholder="Nombre" required="required">
+  			<input type="text" class="form-control" name="name" id="Nombre" placeholder="Nombre" required="required">
                     </div>
   		</div>
 
@@ -80,7 +80,7 @@
                     <label class="col-sm-2 control-label" for="Apellido">Escribe tu apellido&#58;</label>
                     <div class="input-group col-sm-3">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-  			<input type="text" class="form-control" name="lastname" placeholder="Apellido" required="required">
+  			<input type="text" class="form-control" name="lastname" id="Apellido" placeholder="Apellido" required="required">
                     </div>
   		</div>
 		<br>
@@ -88,15 +88,14 @@
                     <label class="col-sm-2 control-label" for="Email">E&#45;mail&#58;</label>
                     <div class="input-group col-sm-3">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
-  			<input type="email" class="form-control" name="id_usuario" placeholder="E&#45;mail" required="required">
+  			<input type="email" class="form-control" name="id_usuario" id="Email" placeholder="E&#45;mail" required="required">
                     </div>
   		</div>
-  		
 		  <br>
 		   <div class="form-group">
 			  <label class="col-sm-2 control-label" for="rol">Tipo de Usuario:</label>
 			  <div class="input-group col-sm-3">
-				<select class="form-control" name="rol" required="required">
+				<select class="form-control" id="rol" name="rol" required="required">
 					<option value="">Selecciona tu Usuario</option>
 					<option value="instructor">Instructor</option>
 					<option value="participante">Participante</option>
@@ -104,14 +103,18 @@
 			  </div>
 		  </div>
 		  <br>
-		  
-  		</div>
+		<!--<div class="form-group">
+                    <label class="col-sm-2 control-label" for="foto">Ingrese la foto: </label>
+                    <div class="input-group col-sm-3">
+  			<input type="file" name="foto">
+                    </div>
+  		</div>-->
 <br>
 		<div class="form-group">
                     <label class="col-sm-2 control-label" for="Password">Password&#58;</label>
                     <div class="input-group col-sm-3">
   			<span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-  			<input type="password" class="form-control" name="password" placeholder="Password" required="required">
+  			<input type="password" class="form-control" name="password" id="Password" placeholder="Password" required="required">
                     </div>
   		</div>
 		  <br>
@@ -119,7 +122,7 @@
                     <label class="col-sm-2 control-label" for="ConfirmarPassword">Confirmar password&#58;</label>
                     <div class="input-group col-sm-3">
   			<span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-  			<input type="password" class="form-control" name="password1" placeholder="Password" required="required">
+  			<input type="password" class="form-control" name="password1" id="ConfirmarPassword" placeholder="Password" required="required">
                     </div>
   		</div>
 		  <br>
@@ -134,7 +137,7 @@
                     <label class="col-sm-4 control-label" for="Mascota">Escribe el nombre de tu mascota&#58;</label>
                     <div class="input-group col-sm-3">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-alphabet"></span></span>
-  			<input type="text" class="form-control" name="res_sec1" placeholder="Mascota" required="required">
+  			<input type="text" class="form-control" name="res_sec1" id="Mascota" placeholder="Mascota" required="required">
                     </div>
   		</div>
 		<br>
@@ -142,7 +145,7 @@
                     <label class="col-sm-4 control-label" for="Libro">Escribe el nombre de tu libro favorito&#58;</label>
                     <div class="input-group col-sm-3">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-tasks"></span></span>
-  			<input type="text" class="form-control" name="res_sec2" placeholder="Libro" required="required">
+  			<input type="text" class="form-control" name="res_sec2" id="Libro" placeholder="Libro" required="required">
                     </div>
   		</div>
 		<br>
@@ -150,7 +153,7 @@
                     <label class="col-sm-4 control-label" for="Cancion">Escribe el nombre de tu canci&oacute;n favorita&#58;</label>
                     <div class="input-group col-sm-3">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-sound-dolby"></span></span>
-  			<input type="text" class="form-control" name="res_sec3" placeholder="Cancion" required="required">
+  			<input type="text" class="form-control" name="res_sec3" id="Cancion" placeholder="Cancion" required="required">
                     </div>
   		</div>
 		<br>

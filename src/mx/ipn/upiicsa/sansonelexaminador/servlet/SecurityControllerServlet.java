@@ -51,7 +51,18 @@ public class SecurityControllerServlet extends HttpServlet
 		else if(action.equals("changePassword")) {
 			nextView = changePassword(request);
 		}
-		else {
+		else if(action.equals("newUser")){
+			try {
+				nextView = newUser(request);
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		else{
 			nextView = Resource.ErrorPage.URL;
 			request.setAttribute(Attribute.Request.ERROR, Message.Form.NO_ACTION_PROVIDED);
 		}
@@ -60,8 +71,26 @@ public class SecurityControllerServlet extends HttpServlet
 		rd.forward(request, response); // Llamar siguiente vista
 
 	}
+
+	private String newUser(HttpServletRequest request) throws ClassNotFoundException, SQLException {
+		String sigue=null;
+		String nombre = request.getParameter("name");
+		String apellido = request.getParameter("lastname");
+		String id_usuario = request.getParameter("id_usuario");
+		String role = "PADRE";
+		String password = request.getParameter("password");
+		String password1 = request.getParameter("password1");
+		String res_sec1 = request.getParameter("res_sec1");
+		String res_sec2 = request.getParameter("res_sec2");
+		String res_sec3 = request.getParameter("res_sec3");
+		UserDAO newUser = new UserDAO();
+		newUser.newUser(nombre, apellido,id_usuario,role ,password,res_sec1 ,res_sec2, res_sec3);
+		sigue = Resource.AltaSatsfactoria.URL;
+		return sigue;
+	}
+
 	/**
-	 * 
+	 * Metodo para login
 	 * @param request
 	 * @return
 	 */
@@ -132,8 +161,7 @@ public class SecurityControllerServlet extends HttpServlet
 	}
 	/**
 	 * 
-	 * @param request
-	 * @return
+	 * Metodo para cambiar Contrasena
 	 */
 	private String changePassword(HttpServletRequest request)
 	{
@@ -205,5 +233,6 @@ public class SecurityControllerServlet extends HttpServlet
 			return nextView;
 		}
 	}
+	
 
 }

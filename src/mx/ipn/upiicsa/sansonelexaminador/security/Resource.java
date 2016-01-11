@@ -19,12 +19,14 @@ public class Resource {
 	{
 		public static final String URL ="/index.jsp";
 	}
-
 	public static class LoginPage
 	{
-		public static final String URL ="/login.jsp";
+		public static final String URL ="/loggin.jsp";
 	}
-
+	public static class AltaSatsfactoria {
+		public static final String URL = "/alta.jsp";
+	}
+	
 	public static class LogoutController
 	{
 		public static final String URL ="/logout";

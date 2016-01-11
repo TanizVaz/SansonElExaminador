@@ -105,11 +105,14 @@ public class UserDAO extends SansonElExaminadorMySqlDAO{
 			closeConnection();
 		}
 	}
+		
 	public int newUser(String nombre, String apellido,String idUsuario,String role ,String password,String res_sec1 ,String res_sec2, String res_sec3) throws SQLException{
 		Statement stmt = null;
 		int vigencia = 5;
 		try{
-			String sql = "insert into usuarios values id_usuario = \'"+idUsuario+"' password = \'"+password+"' firstname=\'"+nombre+"' lastname=\'"+apellido+"' role=\'"+role+"' estatus ='ACTIVO'"+"clave_activacion=null password_es_temporal=false vigencia_password = \'"+vigencia+"' ultima_actualizacion_password=curdate()"+"res_sec1=\'"+res_sec1+"'res_sec2=\'"+res_sec2+ "'res_sec3 =\'"+res_sec3+"'";
+			String sql = "insert into usuarios (id_usuario,password,firstname,lastname,role,estatus,clave_activacion,password_es_temporal,vigencia_password,ultima_actualizacion_password,res_sec1,res_sec2,res_sec3)values"+
+					 "('"+idUsuario+"','"+password+"','"+nombre+"','"+apellido+"','"+role+"','ACTIVO',null,false,'"+vigencia+"',curdate(),'"+res_sec1+"','"+res_sec2+ "','"+res_sec3+"')";
+			System.out.println("UsuarioDAO.newUser() - sql [ " + sql + "]");
 			stmt = createStatement();
 		return stmt.executeUpdate(sql);
 		}finally{

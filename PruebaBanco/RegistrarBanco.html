@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Registro de banco de preguntas</title>
+  </head>
+  <body>
+    Clave de tu examen<input type="claveExamen" ><br>
+    Ingrese su pregunta
+    <input type="text" name="pregunta">
+
+    <div name="preguntas">
+
+      <div name="pregunta0">
+        <p>
+          Tipo de pregunta
+      <input type="radio" name="tipo" value="VerFal" onchange="cambioRadio()">Verdadero o Falso
+      <input type="radio" name="tipo" value="OpcionesPer" onchange="cambioRadio()">Opci&oacute;n m&uacuteltiple
+      <input type="checkbox" name="obligatoria" > Obligatoria
+      </p>
+      <input type="text" name="categoria" placeholder="categoria">
+        <div name="correcto0">
+          <!-- Aqui pondré las opciones para seleccionar Correcta y llenar campo opciones y sel correcta-->
+          <p>
+            Elije la respuesta correcta
+            <input type="radio" name="VF" value="verdadero">Verdadero
+            <input type="radio" name="VF" value="falso">Falso
+          </p>
+          <p>
+            <input type="text" name="textoPregunta1" value=""><input type="radio" name="VF" value="opc1"><br>
+            <input type="text" name="textoPregunta2" value=""><input type="radio" name="VF" value="opc2"><br>
+            <input type="text" name="textoPregunta3" value=""><input type="radio" name="VF" value="opc3"><br>
+            <input type="text" name="textoPregunta4" value=""><input type="radio" name="VF" value="opc3"><br>
+          </p>
+
+        </div>
+      <input type="button" id="addPregunta0" name="addPregunta" value="Agregar pregunta" onclick="addingPregunta()">
+    </div>
+
+    <div name="pregunta0">
+      <p>
+        Tipo de pregunta
+    <input type="radio" name="tipo" value="VerFal" id="selection">
+    <input type="radio" name="tipo" value="OpcionesPer">
+    </p>
+      <div name="correcto0">
+      </div>
+    <input type="button" id="addPregunta0" name="addPregunta" value="Agregar pregunta">
+  </div>
+
+    </div>
+    <script src="../js/RegistrarBanco.js"></script>
+  </body>
+</html>

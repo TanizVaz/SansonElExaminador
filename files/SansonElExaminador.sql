@@ -150,3 +150,15 @@ CREATE TABLE IF NOT EXISTS Comentarios (
   idUsuario VARCHAR(45) NULL,
   FechaHora VARCHAR(45) NULL,
   PRIMARY KEY (idComentarios));
+  
+  -- -----------------------------------------------------
+-- Table Foro
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS Foro (
+  idUsuario VARCHAR(45) NULL,
+  idDuda VARCHAR(45) NULL,
+  Pregunta_Foro VARCHAR(250) NULL,
+  Respuesta_Foro_1 VARCHAR(250) NULL,
+  Respuesta_Foro_2 VARCHAR(250) NULL,
+  Respuesta_Foro_3 VARCHAR(250) NULL,
+  PRIMARY KEY (idUsuario));

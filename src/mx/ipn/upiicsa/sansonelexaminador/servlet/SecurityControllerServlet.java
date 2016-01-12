@@ -77,7 +77,7 @@ public class SecurityControllerServlet extends HttpServlet
 		String nombre = request.getParameter("name");
 		String apellido = request.getParameter("lastname");
 		String id_usuario = request.getParameter("id_usuario");
-		String role = "PADRE";
+		String role = request.getParameter("rol");
 		String password = request.getParameter("password");
 		String password1 = request.getParameter("password1");
 		String res_sec1 = request.getParameter("res_sec1");

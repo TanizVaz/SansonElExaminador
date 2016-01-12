@@ -41,13 +41,6 @@ res_sec2 VARCHAR(45) NULL,
 
 res_sec3 VARCHAR(45) NULL
 
-res_sec1 VARCHAR(45) not NULL,
-
-res_sec2 VARCHAR(45) not NULL,
-
-res_sec3 VARCHAR(45) not NULL
-
-            
 );
 
 

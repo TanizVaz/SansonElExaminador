@@ -6,6 +6,8 @@ public class Role {
 	
 	public static final String ALL = "*";
 	
+	public static final String SCOIO = "SOCIO";
+	
 	public static final String INSTRUCTOR = "INSTRUCTOR";
 	
 	public static final String PARTICIPANTE = "PARTICIPANTE";

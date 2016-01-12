@@ -34,15 +34,12 @@ password_es_temporal BOOLEAN not null,
 vigencia_password integer not null,
 
 ultima_actualizacion_password date not null,
-<<<<<<< HEAD
-=======
 
 res_sec1 VARCHAR(45) NULL,
 
 res_sec2 VARCHAR(45) NULL,
 
 res_sec3 VARCHAR(45) NULL
->>>>>>> 6fbdd226448af72b45eef0fcee7334e55d896b1d
 
 res_sec1 VARCHAR(45) not NULL,
 
@@ -55,13 +52,11 @@ res_sec3 VARCHAR(45) not NULL
 
 
 
-<<<<<<< HEAD
 insert into usuarios values ("admin@novalidserver.net", "passw0rd", "Admin", "", "ADMIN", "ACTIVO", null, false, 0, curdate(),"Pepe","Pepe","Pepe");
-insert into usuarios values ("guillermart@gmail.com", "passw0rd", "Guillermo", "Martinez" ,"SOCIO", "ACTIVO", null, false, 0, curdate(),"Pepe","Pepe","Pepe");
+insert into usuarios values ("guillermart@gmail.com", "passw0rd", "Guillermo", "Martinez" ,"INSTRUCTOR", "ACTIVO", null, false, 0, curdate(),"Pepe","Pepe","Pepe");
+insert into usuarios values ("kuauhtzin@gmail.com", "passw0rd", "Raziel", "Munoz" ,"PARTICIPANTE", "ACTIVO", null, false, 0, curdate(),"m","l","c");
 
 
-=======
->>>>>>> 6fbdd226448af72b45eef0fcee7334e55d896b1d
 -- -----------------------------------------------------
 -- Table Evento
 -- -----------------------------------------------------
@@ -162,8 +157,3 @@ CREATE TABLE IF NOT EXISTS Comentarios (
   idUsuario VARCHAR(45) NULL,
   FechaHora VARCHAR(45) NULL,
   PRIMARY KEY (idComentarios));
-<<<<<<< HEAD
-=======
-
->>>>>>> 6fbdd226448af72b45eef0fcee7334e55d896b1d
-  

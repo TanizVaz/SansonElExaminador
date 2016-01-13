@@ -3,6 +3,7 @@ var tiempo = document.getElementById('muestReloj').value;
 var tiempoArray = tiempo.split(':');
 var min = Number(tiempoArray[0]);
 var seg = Number(tiempoArray[1]);
+var rojo = '<font-color="red"';
 function mueveReloj(){
    //console.log(min+'Segs   '+ seg);
    if(min >= 1){
@@ -17,5 +18,9 @@ function mueveReloj(){
     seg--;
    	setTimeout("mueveReloj()",1000);
   }
-    document.getElementById('muestReloj').value = min.toString()+':'+seg.toString();
+    //document.getElementById('muestReloj').value = min.toString()+':'+seg.toString();
+    if( min <=10 ){
+
+    }
+    document.getElementById('pintaReloj').innerHTML = min.toString()+':'+seg.toString();
 }

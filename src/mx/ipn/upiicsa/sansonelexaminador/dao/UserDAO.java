@@ -43,30 +43,30 @@ public class UserDAO extends SansonElExaminadorMySqlDAO{
 		try {
 			System.out.println("UsuarioDAO.autenticar()");
 			connection=getConnection();
-<<<<<<< HEAD
+//<<<<<<< HEAD
 			//String sql1 = "select * from usuarios where id_usuario ='" + idUsuario + "' and password='" +
-=======
+//=======
 			//String sql1 = "select * from usuarios where id_usuario ='" + idUsuario + "' and password='" +  
->>>>>>> aff7e0821412e6a62fb378550b90f578a119f7cf
+//>>>>>>> aff7e0821412e6a62fb378550b90f578a119f7cf
 	          //                                    password + "'";
 	        String sql = "select * from usuarios where id_usuario = ? and password = ? ";
 			stmt=connection.prepareStatement(sql);
 			stmt.setString(1, idUsuario);
 			stmt.setString(2, password);
 			System.out.println("UsuarioDAO.autenticar() - sql [ " + sql + "]");
-<<<<<<< HEAD
+//<<<<<<< HEAD
 
 
 			rs = stmt.executeQuery();
 
 
-=======
+//=======
 			
 			
 			rs = stmt.executeQuery();
 			
 			
->>>>>>> aff7e0821412e6a62fb378550b90f578a119f7cf
+//>>>>>>> aff7e0821412e6a62fb378550b90f578a119f7cf
 			if(rs.next()) {
 				usuario = new UserValueObject();
 
@@ -106,11 +106,11 @@ public class UserDAO extends SansonElExaminadorMySqlDAO{
 		try {
 			System.out.println("UsuarioDAO.autenticar()");
 			connection=getConnection();
-<<<<<<< HEAD
+//<<<<<<< HEAD
 			//String sql = "update usuarios set password = \'" + newPassword+ "\'where id_usuario ='" +
-=======
+//=======
 			//String sql = "update usuarios set password = \'" + newPassword+ "\'where id_usuario ='" + 
->>>>>>> aff7e0821412e6a62fb378550b90f578a119f7cf
+//>>>>>>> aff7e0821412e6a62fb378550b90f578a119f7cf
 				//	idUsuario + "' and password='" + currentPassword + "'";
 			String sql = "update usuarios set password = ? where id_usuario =? and password=?";
 			stmt=connection.prepareStatement(sql);
@@ -118,11 +118,11 @@ public class UserDAO extends SansonElExaminadorMySqlDAO{
 			stmt.setString(2, idUsuario);
 			stmt.setString(3, currentPassword);
 			System.out.println("UsuarioDAO.autenticar() - sql [ " + sql + "]");
-<<<<<<< HEAD
+//<<<<<<< HEAD
 
-=======
+//=======
 			
->>>>>>> aff7e0821412e6a62fb378550b90f578a119f7cf
+//>>>>>>> aff7e0821412e6a62fb378550b90f578a119f7cf
 			return stmt.executeUpdate();
 		}
 		finally {
@@ -130,17 +130,14 @@ public class UserDAO extends SansonElExaminadorMySqlDAO{
 			closeConnection();
 		}
 	}
-<<<<<<< HEAD
+//<<<<<<< HEAD
 
-	public int newUser(String nombre, String apellido,String idUsuario,String role ,String password,String res_sec1 ,String res_sec2, String res_sec3)
-		throws ClassNotFoundException, SQLException
-		{
-=======
+
 		
 	public int newUser(String nombre, String apellido,String idUsuario,String role ,String password,String res_sec1 ,String res_sec2, String res_sec3)
 		throws ClassNotFoundException, SQLException
 		{	
->>>>>>> aff7e0821412e6a62fb378550b90f578a119f7cf
+//>>>>>>> aff7e0821412e6a62fb378550b90f578a119f7cf
 			PreparedStatement stmt = null;
 		Connection connection = null;
 		int vigencia = 5;
@@ -168,7 +165,7 @@ public class UserDAO extends SansonElExaminadorMySqlDAO{
 			stmt.setString(12, res_sec3);
 			System.out.println("UsuarioDAO.newUser() - sql [ " + sql + "]");
 		return stmt.executeUpdate();
-<<<<<<< HEAD
+//<<<<<<< HEAD
 		}finally{
 			closeStatement(stmt);
 			closeConnection();
@@ -186,8 +183,8 @@ public class UserDAO extends SansonElExaminadorMySqlDAO{
 			stmt.setString(2, pregunta_foro);
 			System.out.println("UsuarioDAO.Foro() - sql [ " + sql + "]");
 		return stmt.executeUpdate();
-=======
->>>>>>> aff7e0821412e6a62fb378550b90f578a119f7cf
+//=======
+//>>>>>>> aff7e0821412e6a62fb378550b90f578a119f7cf
 		}finally{
 			closeStatement(stmt);
 			closeConnection();

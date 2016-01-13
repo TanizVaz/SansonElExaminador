@@ -41,7 +41,7 @@
 								<li><a href="tutos.jsp#tuto3">Consultar el foro de preguntas</a></li>
 							</ul>
 						</li>
-						<li><a href="preguntas.jsp">Foro de preguntas </a></li>
+						<li><a href="Foro.jsp">Foro de preguntas </a></li>
 						<li><a href="soporte.jsp">Soporte</a></li>
 					</ul>
 				</div>

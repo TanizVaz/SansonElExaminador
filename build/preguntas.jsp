@@ -47,13 +47,74 @@
 			</div>
 		</nav>
 	</header>
-	
-	
+
+<section class="col-md-3 hidden-xs hidden-sm">
+		<br>
+		<img src="img/persona.png" align="center" class="img-rounded" alt="id" width="180" height="170">
+				<h4>Men&#250;</h4>
+				<div class="list-group">
+					<a href="mainInstructor.html" class="list-group-item  active">Inicio</a>
+					<a href="crearExamenPartic.html" class="list-group-item">Crear examen</a>
+					<a href="solicitudesParticipante.html" class="list-group-item">Solicitudes de participantes</a>
+					<a href="registrarInstructor.html" class="list-group-item ">Registrar participante</a>
+					<a href="bancoPreguntasInst.html" class="list-group-item ">Registrar banco de preguntas</a>
+					<a href="InsCuenta.html" class="list-group-item ">Administrar cuenta</a>
+				</div>
+	</section>
+					<br>
+
+					<main>
+					      <section class="well well4">
+					        <div class="container">
+					              <h1>Soporte T&#233;cnico</h1>
+					              <form id="contact-form" class='contact-form'>
+					                <fieldset>
+					                  <label class="name">
+					                    <input type="text" name="name" placeholder="Tema de la pregunta:" value="" data-constraints="@Required @JustLetters"/>
+					                    <span class="empty-message">*This field is required.</span>
+					                  </label>
+
+					                  <label class="message">
+					                    <textarea name="message" size="50" placeholder="Plantea tu pregunta:" data-constraints='@Required @Length(min=20,max=999999)'></textarea>
+					                    <span class="empty-message">*This field is required.</span>
+					                  </label>
+
+														<!--
+														Statement stmt = con.createStatement(
+                                      ResultSet.TYPE_SCROLL_INSENSITIVE,
+                                      ResultSet.CONCUR_UPDATABLE);
+       												        ResultSet rs = stmt.executeQuery("SELECT a, b FROM TABLE2");
+
+
+														-->
+
+					                  <div class="btn-wr text-primary">
+					                    <a class="btn btn-primary" href="#" data-type="submit"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Preguntar al foro</a>
+															<a href="#" class="btn btn-success"><span class="glyphicon glyphicon-apple"></span> Revisar foro</a>
+														</div>
+
+					                </fieldset>
+					                <div class="modal fade response-message">
+					                  <div class="modal-dialog">
+					                    <div class="modal-content">
+					                      <div class="modal-header">
+					                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					                          &times;
+					                        </button>
+					                        <h4 class="modal-title">Modal title</h4>
+					                      </div>
+					                      <div class="modal-body">
+					                        Tu pregunta se subio correctamente!
+					                      </div>
+					                    </div>
+					                  </div>
+					                </div>
+					              </form>
+					        </div>
+					      </section>
+					    </main>
 	<br>
 	<br>
-<br>
-<br>
-<br>
 
 <% if(session.getAttribute(Attribute.Session.CURRENT_USER) == null) { %>
 <a href="loggin.jsp">Login</a>

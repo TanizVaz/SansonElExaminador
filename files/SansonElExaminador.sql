@@ -75,7 +75,7 @@ CREATE TABLE IF NOT EXISTS Participantes (
 
   -- -----------------------------------------------------
   -- Table Calificacion
-  --Esta tabla se va a encargar de relacionar el resultado postumo a calificacion
+  -- Esta tabla se va a encargar de relacionar el resultado postumo a calificacion
   -- -----------------------------------------------------
    CREATE TABLE IF NOT EXISTS Calificaciones (
     idPersona VARCHAR(100),
@@ -129,7 +129,7 @@ CREATE TABLE IF NOT EXISTS BancosExamenes(
     -- Table Evento
     -- -----------------------------------------------------
     CREATE TABLE IF NOT EXISTS Evento (
-      evento VARCHAR(100),
+      idEvento VARCHAR(100),
       examen VARCHAR(100),
       tipo VARCHAR(10) NOT NULL,
       fechaInicio VARCHAR(45) ,

@@ -2,15 +2,9 @@ package mx.ipn.upiicsa.sansonelexaminador.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-
-/**
- * 
- * @author Guillermo E. Martinez Barriga
- *
- */
 
 public abstract class DataAccessObject {
 
@@ -18,9 +12,9 @@ public abstract class DataAccessObject {
 	protected String url = "jdbc:mysql://localhost/fortuna";
 	protected String user = "root";
 	protected String password = "root";
-	
+
 	private Connection connection = null;
-	
+
 	/* ********************************************************************* *
 	 *                                                                       *
 	 * ********************************************************************* */
@@ -34,7 +28,7 @@ public abstract class DataAccessObject {
 	 *                                                                       *
 	 * ********************************************************************* */
 	protected abstract void init();
-	
+
 	/* ********************************************************************* *
 	 *                                                                       *
 	 * ********************************************************************* */
@@ -49,7 +43,7 @@ public abstract class DataAccessObject {
 	/* ********************************************************************* *
 	 *                                                                       *
 	 * ********************************************************************* */
-	public Statement createStatement() throws SQLException
+	/*public PreparedStatement createStatement() throws SQLException
 	{
 		if(connection != null && !connection.isClosed())
 		{
@@ -60,7 +54,7 @@ public abstract class DataAccessObject {
 	/* ********************************************************************* *
 	 *                                                                       *
 	 * ********************************************************************* */
-	public Statement prepareStatement(String sql) throws SQLException
+	public PreparedStatement prepareStatement(String sql) throws SQLException
 	{
 		if(connection != null && !connection.isClosed())
 		{
@@ -71,7 +65,7 @@ public abstract class DataAccessObject {
 	/* ********************************************************************* *
 	 *                                                                       *
 	 * ********************************************************************* */
-	public static void closeStatement(Statement stmt) throws SQLException
+	public static void closeStatement(PreparedStatement stmt) throws SQLException
 	{
 		if(stmt != null && !stmt.isClosed())
 		{
@@ -87,7 +81,7 @@ public abstract class DataAccessObject {
 		if(connection != null && !connection.isClosed())
 		{
 			connection.close();
-		}		
+		}
 		System.out.println("DataAccessObject.closeConnection() - Database connection has been closed");
 	}
 	/* ********************************************************************* *
@@ -96,11 +90,11 @@ public abstract class DataAccessObject {
 	private void openConnection() throws SQLException, ClassNotFoundException
 	{
 		// System.out.println("DataAccessObject.openConnection()");
-		
+
 		//System.out.println("DataAccessObject.openConnection() - " + connection + ":" + connection==null?false:connection.isClosed());
-		
+
 		System.out.println("DataAccessObject.openConnection() - " + connection );
-		
+
 		if(connection == null || connection.isClosed())
 		{
 			Class.forName(driver);
@@ -127,4 +121,3 @@ public abstract class DataAccessObject {
 	 *                                                                       *
 	 * ********************************************************************* */
 }
-

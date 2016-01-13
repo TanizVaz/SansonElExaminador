@@ -4,12 +4,12 @@ package mx.ipn.upiicsa.sansonelexaminador.dao;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.PreparedStatement;
 
 import mx.ipn.upiicsa.sansonelexaminador.valueobject.UserValueObject;
 
 /**
- * 
+ *
  * @author Guillermo E. Martinez Barriga
  *
  */
@@ -17,7 +17,7 @@ import mx.ipn.upiicsa.sansonelexaminador.valueobject.UserValueObject;
 public class UserDAO extends SansonElExaminadorMySqlDAO{
 
 	/**
-	 * 
+	 *
 	 * @throws ClassNotFoundException
 	 * @throws SQLException
 	 */
@@ -26,36 +26,38 @@ public class UserDAO extends SansonElExaminadorMySqlDAO{
 		System.out.println("UsuarioDAO()");
 	}
 	/**
-	 * 
+	 *
 	 * @param idUsuario
 	 * @param password
 	 * @return
 	 * @throws ClassNotFoundException
 	 * @throws SQLException
 	 */
-	public UserValueObject autenticar(String idUsuario, String password) 
+	public UserValueObject autenticar(String idUsuario, String password)
 	throws ClassNotFoundException, SQLException
 	{
-		Statement stmt = null;
+		PreparedStatement stmt = null;
 		ResultSet rs =null;
 		Connection connection = null;
 		UserValueObject usuario = null;
 		try {
 			System.out.println("UsuarioDAO.autenticar()");
-			
-			String sql = "select * from usuarios where id_usuario ='" + idUsuario + "' and password='" +  
-	                                              password + "'";
-			
+			connection=getConnection();
+			//String sql1 = "select * from usuarios where id_usuario ='" + idUsuario + "' and password='" +
+	          //                                    password + "'";
+	        String sql = "select * from usuarios where id_usuario = ? and password = ? ";
+			stmt=connection.prepareStatement(sql);
+			stmt.setString(1, idUsuario);
+			stmt.setString(2, password);
 			System.out.println("UsuarioDAO.autenticar() - sql [ " + sql + "]");
-			
-			stmt = createStatement();
-			
-			rs = stmt.executeQuery(sql);
-			
-			
+
+
+			rs = stmt.executeQuery();
+
+
 			if(rs.next()) {
 				usuario = new UserValueObject();
-				
+
 				usuario.setId(rs.getString("id_usuario"));
 				usuario.setFirstName(rs.getString("firstname"));
 				usuario.setLastName(rs.getString("lastname"));
@@ -76,7 +78,7 @@ public class UserDAO extends SansonElExaminadorMySqlDAO{
 		}
 	}
 	/**
-	 * 
+	 *
 	 * @param idUsuario
 	 * @param currentPassword
 	 * @param newPassword
@@ -84,61 +86,84 @@ public class UserDAO extends SansonElExaminadorMySqlDAO{
 	 * @throws ClassNotFoundException
 	 * @throws SQLException
 	 */
-	public int updatePassword(String idUsuario, String currentPassword, String newPassword) 
+	public int updatePassword(String idUsuario, String currentPassword, String newPassword)
 	throws ClassNotFoundException, SQLException
 	{
-		Statement stmt = null;
+		PreparedStatement stmt = null;
+		Connection connection = null;
 		try {
 			System.out.println("UsuarioDAO.autenticar()");
-			
-			String sql = "update usuarios set password = \'" + newPassword+ "\'where id_usuario ='" + 
-					idUsuario + "' and password='" + currentPassword + "'";
-			
+			connection=getConnection();
+			//String sql = "update usuarios set password = \'" + newPassword+ "\'where id_usuario ='" +
+				//	idUsuario + "' and password='" + currentPassword + "'";
+			String sql = "update usuarios set password = ? where id_usuario =? and password=?";
+			stmt=connection.prepareStatement(sql);
+			stmt.setString(1, newPassword);
+			stmt.setString(2, idUsuario);
+			stmt.setString(3, currentPassword);
 			System.out.println("UsuarioDAO.autenticar() - sql [ " + sql + "]");
-			
-			stmt = createStatement();
-			
-			return stmt.executeUpdate(sql);
+
+			return stmt.executeUpdate();
 		}
 		finally {
 			closeStatement(stmt);
 			closeConnection();
 		}
 	}
-		
-	public int newUser(String nombre, String apellido,String idUsuario,String role ,String password,String res_sec1 ,String res_sec2, String res_sec3) throws SQLException{
-		Statement stmt = null;
+
+	public int newUser(String nombre, String apellido,String idUsuario,String role ,String password,String res_sec1 ,String res_sec2, String res_sec3)
+		throws ClassNotFoundException, SQLException
+		{
+			PreparedStatement stmt = null;
+		Connection connection = null;
 		int vigencia = 5;
 		try{
+			System.out.println("UsuarioDAO.newUser()");
+			connection=getConnection();
+			//String sql = "insert into usuarios (id_usuario,password,firstname,lastname,role,estatus,clave_activacion,password_es_temporal,
+			//vigencia_password,ultima_actualizacion_password,res_sec1,res_sec2,res_sec3)values"+
+			//		 "('"+idUsuario+"','"+password+"','"+nombre+"','"+apellido+"','"+role+"','ACTIVO',null,false,'"+vigencia+"',curdate(),'
+			//"+res_sec1+"','"+res_sec2+ "','"+res_sec3+"')";
 			String sql = "insert into usuarios (id_usuario,password,firstname,lastname,role,estatus,clave_activacion,password_es_temporal,vigencia_password,ultima_actualizacion_password,res_sec1,res_sec2,res_sec3)values"+
-					 "('"+idUsuario+"','"+password+"','"+nombre+"','"+apellido+"','"+role+"','ACTIVO',null,false,'"+vigencia+"',curdate(),'"+res_sec1+"','"+res_sec2+ "','"+res_sec3+"')";
+					 "(?,?,?,?,?,?,?,?,?,curdate(),?,?,?)";
+			stmt=connection.prepareStatement(sql);
+			stmt.setString(1, idUsuario);
+			stmt.setString(2, password);
+			stmt.setString(3, nombre);
+			stmt.setString(4, apellido);
+			stmt.setString(5, role);
+			stmt.setString(6, "ACTIVO");
+			stmt.setString(7, "null");
+			stmt.setInt(8, 0);
+			stmt.setInt(9, vigencia);
+			stmt.setString(10, res_sec1);
+			stmt.setString(11, res_sec2);
+			stmt.setString(12, res_sec3);
 			System.out.println("UsuarioDAO.newUser() - sql [ " + sql + "]");
-			stmt = createStatement();
-		return stmt.executeUpdate(sql);
+		return stmt.executeUpdate();
 		}finally{
 			closeStatement(stmt);
 			closeConnection();
 		}
-		
-		
+
+
 	}
-	
 	public int Foro(String tema_pregunta, String pregunta_foro) throws SQLException{
-		ResultSet rs=null;
-		Statement stmt = null;
-		try{
-			String sql = "insert into Foro (Tema_Pregunta, Pregunta_Foro)values"+
-					 "('"+tema_pregunta+"','"+pregunta_foro+"')";
+		PreparedStatement stmt = null;
+	  Connection connection = null;
+	try{
+			String sql = "insert into Foro (Tema_Pregunta, Pregunta_Foro)values (?,?)";
+			stmt=connection.prepareStatement(sql);
+			stmt.setString(1, tema_pregunta);
+			stmt.setString(2, pregunta_foro);
 			System.out.println("UsuarioDAO.Foro() - sql [ " + sql + "]");
-			stmt = createStatement();
-		return stmt.executeUpdate(sql);
-		return rs;
+		return stmt.executeUpdate();
 		}finally{
 			closeStatement(stmt);
 			closeConnection();
 		}
-		
-		
+
+
 	}
 
 }

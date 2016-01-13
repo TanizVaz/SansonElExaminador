@@ -26,7 +26,7 @@
 									</button>
 								</div>
 								<div class="collapse navbar-collapse" id="navegacion-fm">
-									<ul class="nav nav-pills col-md-7">
+									<ul class="nav nav-pills col-md-8">
 										<li class="active" ><a href="index.jsp">Inicio</a></li>
 										<li class="dropdown">
 											<a href="tutos.jsp" class="dropdown-toggle" data-toggle="dropdown" role="button">
@@ -42,10 +42,10 @@
 										<li><a href="soporte.jsp">Soporte</a></li>
 									</ul>
 									<% if(session.getAttribute(Attribute.Session.CURRENT_USER) == null) { %>
-									<div class="contenedor-botones col-md-4">
+									<div class="contenedor-botones col-md-2">
 									<a href="loggin.jsp" class="btn btn-primary">Iniciar sesi&#243;n  <span class="glyphicon glyphicon-user"></span></a>
 								</div>
-								<div class="contenedor-botones col-md-1">
+								<div class="contenedor-botones col-md-2">
 									<a href="registrar.jsp" class="btn btn-success" >Crear cuenta <span class="glyphicon glyphicon-tag"></span></a>
 								</div>
 									<% } %>

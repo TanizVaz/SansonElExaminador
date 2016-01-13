@@ -93,6 +93,7 @@ CREATE TABLE IF NOT EXISTS Participantes (
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS Preguntas (
   banco VARCHAR(100) NOT NULL,
+  email VARCHAR(100) NOT NULL,
   texto VARCHAR (140) NOT NULL,
   tipo VARCHAR(20) NOT NULL,
   categoria VARCHAR(30) NOT NULL,
@@ -100,27 +101,30 @@ CREATE TABLE IF NOT EXISTS Preguntas (
   correcta VARCHAR(30),
   obligatoria BOOLEAN
   );
-  insert into Preguntas values('DEMO', 'El caballo blanco es blanco?','VerFal','bobas','Verdadero*Falso','Verdadero',true);
-  insert into Preguntas values('DEMO', 'De qu&eacute color es la manzana?','OpcPer','bobas','Morada*Blanca*Amarilla*Rosa','Amarilla',false);
-  insert into Preguntas values('DEMO', 'C&oacutemo se llama el ping&uumlino de linux?','OpcPer','bobas','Pepito*Juanito*No lo se*Linux','Verdadero',false);
+  insert into Preguntas values('DEMO','villaseduardo@hotmail.com', 'El caballo blanco es blanco?','VerFal','bobas','Verdadero*Falso','Verdadero',true);
+  insert into Preguntas values('DEMO','villaseduardo@hotmail.com', 'De qu&eacute color es la manzana?','OpcPer','bobas','Morada*Blanca*Amarilla*Rosa','Amarilla',false);
+  insert into Preguntas values('DEMO','villaseduardo@hotmail.com', 'C&oacutemo se llama el ping&uumlino de linux?','OpcPer','bobas','Pepito*Juanito*No lo se*Linux','Verdadero',false);
 
-  insert into Preguntas values('DEMO', 'Es Lewis Hamilton el campe&oacuten del mundo?','VerFal','F1','Verdadero*Falso','Verdadero',true);
-  insert into Preguntas values('DEMO', 'Es Nico Roosberg la persona m&aacutes agradable del mundo?','VerFal','F1','Verdadero*Falso','Falso',False);
-  insert into Preguntas values('DEMO', 'Selecciona la nacionalidad de Checo Perez?','OpcPer','F1','Mexicano*Alem&aacuten*Italiani*Argentino','Mexicano',true);
-  insert into Preguntas values('DEMO', 'Es Nico Roosberg la persona m&aacutes agradable del mundo?','VerFal','F1','Verdadero*Falso','Falso',False);
-  insert into Preguntas values('DEMO', 'Es el campe&oacuten mundial m&aacutes joven del mundo?','OpcPer','F1','Vettel*Riccardio*Botas*Gutierrez','Vettel',true);
+  insert into Preguntas values('DEMO','villaseduardo@hotmail.com', 'Es Lewis Hamilton el campe&oacuten del mundo?','VerFal','F1','Verdadero*Falso','Verdadero',true);
+  insert into Preguntas values('DEMO','villaseduardo@hotmail.com', 'Es Nico Roosberg la persona m&aacutes agradable del mundo?','VerFal','F1','Verdadero*Falso','Falso',False);
+  insert into Preguntas values('DEMO','villaseduardo@hotmail.com', 'Selecciona la nacionalidad de Checo Perez?','OpcPer','F1','Mexicano*Alem&aacuten*Italiani*Argentino','Mexicano',true);
+  insert into Preguntas values('DEMO','villaseduardo@hotmail.com', 'Es Nico Roosberg la persona m&aacutes agradable del mundo?','VerFal','F1','Verdadero*Falso','Falso',False);
+  insert into Preguntas values('DEMO','villaseduardo@hotmail.com', 'Es el campe&oacuten mundial m&aacutes joven del mundo?','OpcPer','F1','Vettel*Riccardio*Botas*Gutierrez','Vettel',true);
 -- -----------------------------------------------------
+-- BancosExamenes, insertar preguntas, evento
 -- Table Examen con bancos
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS BancosExamenes(
   banco VARCHAR(100),
+  email VARCHAR(100),
   categoria VARCHAR(100),
   noObl INT,
   noOpc INT,
-  examenAsociado VARCHAR(100)
+  examen VARCHAR(100),
+  participantes VARCHAR(2000)
   );
-  insert into BancosExamenes values('DEMO','bobas','1','1','cosasLalo');
-  insert into BancosExamenes values('DEMO','F1','2','1','cosasLalo');
+  insert into BancosExamenes values('DEMO','villaseduardo@hotmail.com', 'bobas','1','1','cosasLalo','villaseduardo@hotmail.com*evillasrmx@gmail.com');
+  insert into BancosExamenes values('DEMO','villaseduardo@hotmail.com', 'F1','2','1','cosasLalo','villaseduardo@hotmail.com*evillasrmx@gmail.com');
     -- -----------------------------------------------------
     -- Table Evento
     -- -----------------------------------------------------
@@ -137,7 +141,7 @@ CREATE TABLE IF NOT EXISTS BancosExamenes(
       banco VARCHAR(100),
       PRIMARY KEY (idEvento));
 insert into Evento values('Mi_amigo','DemostracionExamenAbierto','Abierto','2016-01-12','0:00', '2016-01-15','0:00','30','cosasLalo','DEMO');
-insert into Evento values('Mi_amigoC','DemostracionExamenAbierto','Cerrado','2016-01-12','0:00', '2016-01-12','0:30','30','cosasLalo','DEMO');
+insert into Evento values('Mi_amigoC','DemostracionExamenCerrado','Cerrado','2016-01-12','0:00', '2016-01-12','0:30','30','cosasLalo','DEMO');
 -- -----------------------------------------------------
 -- Table Tema
 -- -----------------------------------------------------

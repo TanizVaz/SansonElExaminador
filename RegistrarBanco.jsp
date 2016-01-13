@@ -1,34 +1,26 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Registro de banco de preguntas</title>
+    <title>Registra tu banco de preguntas</title>
   </head>
   <body>
-    Clave de tu examen<input type="claveExamen" ><br>
-    Ingrese su pregunta
-    <input type="text" name="pregunta">
+<form class="" action="index.html" method="post">
 
-    <div name="preguntas">
-<form  action="index.html" method="GET">
-
-
-      <div name="pregunta0">
-        <p>
-          Tipo de pregunta
-      <input type="radio" name="tipo" value="VerFal" onchange="cambioRadio()">Verdadero o Falso
-      <input type="radio" name="tipo" value="OpcionesPer" onchange="cambioRadio()">Opci&oacute;n m&uacuteltiple
-      <input type="checkbox" name="obligatoria" > Obligatoria
-      </p>
-      <input type="text" name="categoria" placeholder="categoria">
-        <div id="correcto0">
-          <!-- Aqui pondré las opciones para seleccionar Correcta y llenar campo opciones y sel correcta-->
-        </div>
-      <input type="button" id="addPregunta0" name="addPregunta" value="Agregar pregunta" onclick="addingPregunta()">
+    Banco: <input type="text" name="banco"><br>
+    <!--El email debería estar como oculto o solicitarlo de la sesion -->
+    <select name="tipo">
+      <option value="Abierto">Abierto</option>
+        <option value="Cerrado">Cerrado</option>
+    </select>
+    <br>
+    <div name="categoias">
+      Grupos:<input name="categoria0" type="text" placeholder="nombra la categor&iacute;a"><br>
+      N&uacute;mero obligatorias <input type="number" name="noObl" min="0"><br>
+      N&uacute;mero opcionales <input type="number" name="noOpc" min=""><br>
     </div>
-    </form>
-  </div>
 
-    <script src="js/RegistrarBanco.js"></script>
+  </form>
+
   </body>
 </html>

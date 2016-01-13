@@ -102,14 +102,14 @@ CREATE TABLE IF NOT EXISTS Preguntas (
   obligatoria BOOLEAN
   );
   insert into Preguntas values('DEMO','villaseduardo@hotmail.com', 'El caballo blanco es blanco?','VerFal','bobas','Verdadero*Falso','Verdadero',true);
-  insert into Preguntas values('DEMO','villaseduardo@hotmail.com', 'De qu&eacute color es la manzana?','OpcPer','bobas','Morada*Blanca*Amarilla*Rosa','Amarilla',false);
-  insert into Preguntas values('DEMO','villaseduardo@hotmail.com', 'C&oacutemo se llama el ping&uumlino de linux?','OpcPer','bobas','Pepito*Juanito*No lo se*Linux','Verdadero',false);
+  insert into Preguntas values('DEMO','villaseduardo@hotmail.com', 'De qu&eacute;; color es la manzana?','OpcPer','bobas','Morada*Blanca*Amarilla*Rosa','Amarilla',false);
+  insert into Preguntas values('DEMO','villaseduardo@hotmail.com', 'C&oacute;mo se llama el ping&uumlino de linux?','OpcPer','bobas','Pepito*Juanito*No lo se*Linux','Verdadero',false);
 
-  insert into Preguntas values('DEMO','villaseduardo@hotmail.com', 'Es Lewis Hamilton el campe&oacuten del mundo?','VerFal','F1','Verdadero*Falso','Verdadero',true);
-  insert into Preguntas values('DEMO','villaseduardo@hotmail.com', 'Es Nico Roosberg la persona m&aacutes agradable del mundo?','VerFal','F1','Verdadero*Falso','Falso',False);
-  insert into Preguntas values('DEMO','villaseduardo@hotmail.com', 'Selecciona la nacionalidad de Checo Perez?','OpcPer','F1','Mexicano*Alem&aacuten*Italiani*Argentino','Mexicano',true);
-  insert into Preguntas values('DEMO','villaseduardo@hotmail.com', 'Es Nico Roosberg la persona m&aacutes agradable del mundo?','VerFal','F1','Verdadero*Falso','Falso',False);
-  insert into Preguntas values('DEMO','villaseduardo@hotmail.com', 'Es el campe&oacuten mundial m&aacutes joven del mundo?','OpcPer','F1','Vettel*Riccardio*Botas*Gutierrez','Vettel',true);
+  insert into Preguntas values('DEMO','villaseduardo@hotmail.com', 'Es Lewis Hamilton el campe&oacute;n del mundo?','VerFal','F1','Verdadero*Falso','Verdadero',true);
+  insert into Preguntas values('DEMO','villaseduardo@hotmail.com', 'Es Nico Roosberg la persona m&aacute;s agradable del mundo?','VerFal','F1','Verdadero*Falso','Falso',False);
+  insert into Preguntas values('DEMO','villaseduardo@hotmail.com', 'Selecciona la nacionalidad de Checo Perez?','OpcPer','F1','Mexicano*Alem&aacute;n*Italiani*Argentino','Mexicano',true);
+  insert into Preguntas values('DEMO','villaseduardo@hotmail.com', 'Es Nico Roosberg la persona m&aacute;s agradable del mundo?','VerFal','F1','Verdadero*Falso','Falso',False);
+  insert into Preguntas values('DEMO','villaseduardo@hotmail.com', 'Es el campe&oacute;n mundial m&aacute;s joven del mundo?','OpcPer','F1','Vettel*Riccardio*Botas*Gutierrez','Vettel',true);
 -- -----------------------------------------------------
 -- BancosExamenes, insertar preguntas, evento
 -- Table Examen con bancos

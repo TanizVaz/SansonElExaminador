@@ -9,12 +9,12 @@ import mx.ipn.upiicsa.sansonelexaminador.util.Message;
 import mx.ipn.upiicsa.sansonelexaminador.util.Utility;
 
 /**
- * 
+ *
  * @author Guillermo E. Martinez Barriga
  *
  */
 public class Resource {
-		
+
 	public class IndexPage
 	{
 		public static final String URL ="/index.jsp";
@@ -26,17 +26,17 @@ public class Resource {
 	public static class AltaSatsfactoria {
 		public static final String URL = "/alta.jsp";
 	}
-	
+
 	public static class LogoutController
 	{
 		public static final String URL ="/logout";
 	}
-	
+
 	public static class ErrorPage
 	{
 		public static final String URL ="/error.jsp";
 	}
-	
+
 	public static class HeaderFrame
 	{
 		public static final String URL ="/header.frame.jsp";
@@ -47,21 +47,21 @@ public class Resource {
 		public static final String URL ="/messages.frame.jsp";
 	}
 
-	public static class MenuFrame 
+	public static class MenuFrame
 	{
 		public static final String URL ="/menu.frame.jsp";
 	}
-	
-	public static class ShowGalletaPage
+
+	public static class Main
 	{
-		public static final String URL ="/showGalleta.jsp";
+		public static final String URL ="/main.jsp";
 	}
 
 	public static class GalletaController
 	{
 		public static final String URL ="/galleta.jsp";
 	}
-	
+
 	public static class BolaDeCristalPage
 	{
 		public static final String URL ="/bolaDeCristal.jsp";
@@ -71,7 +71,7 @@ public class Resource {
 	{
 		public static final String URL ="/bolaDeCristal";
 	}
-	
+
 	public static class ConsultaTuHoroscopoPage
 	{
 		public static final String URL ="/consultaTuHoroscopo.jsp";
@@ -81,7 +81,7 @@ public class Resource {
 	{
 		public static final String URL ="/showHoroscopo.jsp";
 	}
-	
+
 	public static class HoroscopoController
 	{
 		public static final String URL ="/horoscopo";
@@ -91,22 +91,43 @@ public class Resource {
 	{
 		public static final String URL ="/updatePassword.jsp";
 	}
-	
+
+	public static class BancoRegistrado
+	{
+		public static final String URL ="/BancoRegistrado.jsp";
+	}
+
+	public static class EventoRegistrado
+	{
+		public static final String URL ="/EventoRegistrado.jsp";
+	}
+
+	public static class InstructorRegistrado
+	{
+		public static final String URL ="/InstructorRegistrado.jsp";
+	}
+
+	public static class PreguntasRegistradas
+	{
+		public static final String URL ="/PreguntasRegistradas.jsp";
+	}
+
+
 	public static class SecurityController
 	{
-		
+
 		public static final String URL ="/security";
-		
+
 		public static class Action {
 			public static final String AUTHENTICATE = "authenticate";
 			public static final String CHANGE_PASSWORD = "changePassword";
 		}
-		
+
 	}
-	
+
 
 	/**
-	 * 
+	 *
 	 * @author Guillermo E. Martinez Barriga
 	 *
 	 */
@@ -115,23 +136,23 @@ public class Resource {
 	}
 
 	/**
-	 * 
+	 *
 	 */
-	private String url = null; 
+	private String url = null;
 	private Map<String, Set<String>> listOfActionsGrantedByRole = null;
-	
+
 	/**
-	 * 
+	 *
 	 * @param name
 	 * @param url
 	 */
 	public Resource(String url) {
 		this.url = url;
-		
+
 		listOfActionsGrantedByRole = new HashMap<String, Set<String>>();
 	}
 	/**
-	 * 
+	 *
 	 * @return
 	 */
 	public String getUrl()
@@ -139,36 +160,36 @@ public class Resource {
 		return url;
 	}
 	/**
-	 * 
+	 *
 	 * @param role
 	 * @param action
 	 */
 	public void addPermissionByRole(String role, String actionGrantedToRole) {
-		
+
 		if(Utility.hasAnStringThatIsNullOrEmpty(role, actionGrantedToRole)) {
 			throw new NullPointerException(Message.Form.FIELD_NULL_OR_EMPTY);
 		}
-		
+
 		if(!listOfActionsGrantedByRole.containsKey(role)) {
-			
+
 			listOfActionsGrantedByRole.put(role,  new HashSet<String>());
 		}
-		
-		listOfActionsGrantedByRole.get(role).add(actionGrantedToRole);  
+
+		listOfActionsGrantedByRole.get(role).add(actionGrantedToRole);
 	}
 	/**
-	 * 
+	 *
 	 * @param role
 	 * @param actions
 	 */
 	public void addPermissionByRole(String role, String... actionsGrantedToRole) {
-		
+
 		if(Utility.hasAnStringThatIsNullOrEmpty(role) ||  Utility.hasAnStringThatIsNullOrEmpty(actionsGrantedToRole)) {
 			throw new NullPointerException(Message.Form.FIELD_NULL_OR_EMPTY);
 		}
-		
+
 		if(!listOfActionsGrantedByRole.containsKey(role)) {
-			
+
 			listOfActionsGrantedByRole.put(role,  new HashSet<String>());
 		}
 
@@ -178,26 +199,26 @@ public class Resource {
 		}
 	}
 	/**
-	 * 
+	 *
 	 * @param role
 	 * @param action
 	 * @return
 	 */
 	public boolean roleHasPermissionGrantedOverAnAction(String role, String action) {
-		
+
 		Set<String> actionsGrantedToRole = listOfActionsGrantedByRole.get(role);
-		
+
 		return actionsGrantedToRole.contains(action);
 	}
 	/**
-	 * 
+	 *
 	 * @param role
 	 * @return
 	 */
 	public String[] getActionsGrantedToRole(String role) {
 
 		Set<String> actionsGrantedToRole  = new HashSet<String>();
-		
+
 		// Get Actions for ALL Roles
 		if(listOfActionsGrantedByRole.get(Role.ALL) != null)
 		{
@@ -208,49 +229,49 @@ public class Resource {
 		{
 			actionsGrantedToRole.addAll(listOfActionsGrantedByRole.get(role));
 		}
-		
+
 
 		// actionsGrantedToRole = listOfActionsGrantedByRole.get(role);
-		
+
 		System.out.println("XResource.getActionsGrantedToRole() - role - " +  role + " - actionsGrantedToRole - " + actionsGrantedToRole);
 
 		if(actionsGrantedToRole != null) {
-			
-			return actionsGrantedToRole.toArray(new String[0]); 
+
+			return actionsGrantedToRole.toArray(new String[0]);
 		}
-		
+
 		return new String[0];
-	}	
+	}
 	/**
-	 * 
+	 *
 	 */
 	public String toString() {
-		
-		
+
+
 		StringBuffer sb = new StringBuffer();
 		sb.append("Resource [ url: \"" + url + "\", ActionsGrantedToRole: ");
-		
-		
+
+
 		Set<String> rolesSet = listOfActionsGrantedByRole.keySet();
 		String[] roles = rolesSet.toArray(new String[0]);
 
 		String[] actionsGranted = null;
-		
+
 		sb.append("{ ");
-		
+
 		for(int i=0; i < roles.length;i++) {
-			
+
 			sb.append("role: \"" + roles[i] + "\", {\"");
-			
+
 			actionsGranted = listOfActionsGrantedByRole.get(roles[i]).toArray(new String[0]);
-			
-			
+
+
 			for(int j=0; j < actionsGranted.length;j++)
 			{
-				
+
 				sb.append(actionsGranted[j]);
 				sb.append("\"");
-				
+
 				if((j+1) < actionsGranted.length)
 				{
 					sb.append(", \"");
@@ -261,24 +282,24 @@ public class Resource {
 			{
 				sb.append(", ");
 			}
-			
+
 		}
 
 		sb.append("} ]");
 
-			
+
 		return sb.toString();
 	}
-	
+
 	public static void main(String[] args) {
 		Resource resource = new Resource("/user");
-		
+
 		resource.addPermissionByRole("ADMIN", "authenticate", "changePassword", "authenticate", "*");
 		resource.addPermissionByRole("*","autenticar","*");
-		
+
 
 		System.out.println(resource);
-		
+
 		resource.getActionsGrantedToRole("ADMIN");
 	}
 

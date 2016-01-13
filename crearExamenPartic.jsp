@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
+
 <%@ page import="mx.ipn.upiicsa.sansonelexaminador.util.Attribute"%>
 
 <!DOCTYPE html>
@@ -48,11 +48,11 @@
 			</div>
 		</nav>
 	</header>
-	
+
 
 	  	<section class="col-md-3 hidden-xs hidden-sm">
 		<br>
-		<img src="img/persona.png" align="center" class="img-rounded" alt="id" width="180" height="170">	
+		<img src="img/persona.png" align="center" class="img-rounded" alt="id" width="180" height="170">
 				<h4>Men&#250;</h4>
 				<div class="list-group">
 					<a href="mainInstructor.jsp" class="list-group-item  ">Inicio</a>
@@ -86,17 +86,7 @@
 							</div>
 
 							<br>
-							<div class="btn-group">
-						<button class="btn btn-info btn-md dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							Categor&#237;a <span class="caret"></span>
-						</button>
-						<ul class="dropdown-menu">
-							<li><a href="#">Redes</a></li>
-							<li><a href="#">Protocolos</a></li>
-							<li><a href="#">Ataques web</a></li>
-							<li><a href="#">Java</a></li>
-						</ul>
-					</div>
+
 					<br><br><br>
 					<p>
 						Buscar preguntas
@@ -127,76 +117,43 @@
 							 <p>
  								Caracter&#237;sticas del ex&#225;men
  							</p>
+							<div class="btn-group">
+								<input type="radio" name="tipoExa" value="abierto" onchange="pintaTiempos()">Tiempo Abierto<br>
+								<input type="radio" name="tipoExa" value="hrespc" onchange="pintaTiempos()">Hora especifica<br>
+							</div>
+							<div id="pinta">
+							</div>
+
+
+							<br><br><br><br>
+
+
  							<div class="input-group col-md-8">
 
-					<div class="btn-group">
-			  <button class="btn btn-info btn-md dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			    Tipo ex&#225;men <span class="caret"></span>
-			  </button>
-			  <ul class="dropdown-menu">
-			    <li><a href="#">Tiempo abierto</a></li>
-					<li><a href="#">Fecha espec&#237;fica</a></li>
-			  </ul>
-				</div>
-				<br><br><br>
 
 							<div class="btn-group">
 						<button class="btn btn-info btn-md dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							N&#250;mero de preguntas <span class="caret"></span>
 						</button>
-						<ul class="dropdown-menu">
-							<li><a href="#">10</a></li>
-							<li><a href="#">15</a></li>
-							<li><a href="#">20</a></li>
-						</ul>
-					</div>
+						Numero de preguntas<input type="number" name="numpreg" min=5>
 					<br><br><br>
 
 					<div class="btn-group">
-				<button class="btn btn-info btn-md dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					Tiempo <span class="caret"></span>
-				</button>
-				<ul class="dropdown-menu">
-					<li><a href="#">3 min</a></li>
-					<li><a href="#">20 min </a></li>
-					<li><a href="#">30 min</a></li>
-					<li><a href="#">90 min</a></li>
-				</ul>
-			</div>
-			<br><br><br><br><br><br><br><br><br>
+						Tiempo <input type="number" min=5>
+
+					<br><br><br><br><br><br><br><br><br>
 
 						 </div>
 					 </div>
 						 </div>
+					 </div>
 			 </section>
 
 			 </div>
 			 <br><br>
 
-			 <div class="container">
-			 <div class="panel panel-info">
-			<div class="panel-heading">
-			<h3 class="panel-title">Previsualizador de ex&#225;men</h3>
-			</div>
-			<div class="panel-body">
-			1.-
-			</div>
-			<div class="panel-body">
-			2.-
-			</div>
-			<div class="panel-body">
-			3.-
-			</div>
-			<div class="panel-body">
-			4.-
-			</div>
-			<div class="panel-body">
-			5.-
-			</div>
-			</div>
-		</div>
 
-		<div class="container">
+		<div class="container col-md-3">
 			<br>
 				 <a href="#" class="btn btn-primary" align="left"><span class="glyphicon glyphicon-apple"></span>  Aplicar</a>
 				 <a href="#" class="btn btn-success" align="left"><span class="glyphicon glyphicon-collapse-down"></span>  Agregar m&#225;s</a>
@@ -289,7 +246,7 @@
 		</div>
 
 	</footer>
-
+	<script src="js/crearExamenPartic.js"></script>
 	<script src="js/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 

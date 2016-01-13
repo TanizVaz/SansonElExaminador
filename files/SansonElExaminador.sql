@@ -4,18 +4,18 @@ create database sanson_el_examinador_db;
 use sanson_el_examinador_db;
 
 -- Drop Tables
-        
 
 
-drop table if exists usuarios; 
-   
+
+drop table if exists usuarios;
+
 
 
 
 CREATE TABLE usuarios (
-                            
+
 id_usuario VARCHAR(100) not NULL primary key,
-                                            
+
 password VARCHAR(100) not NULL,
 
 firstname VARCHAR(100) not NULL,
@@ -50,18 +50,7 @@ insert into usuarios values ("guillermart@gmail.com", "passw0rd", "Guillermo", "
 insert into usuarios values ("kuauhtzin@gmail.com", "passw0rd", "Raziel", "Munoz" ,"PARTICIPANTE", "ACTIVO", null, false, 0, curdate(),"m","l","c");
 
 
--- -----------------------------------------------------
--- Table Evento
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS Evento (
-  idEvento INT NOT NULL,
-  idExamen INT NOT NULL,
-  Tipo VARCHAR(10) NOT NULL,
-  FechaInicio VARCHAR(45) NULL,
-  Duracion VARCHAR(45) NULL,
-  FechaFin VARCHAR(45) NULL,
-  Tema VARCHAR(45) NULL,
-  PRIMARY KEY (idEvento));
+
 
 
 -- -----------------------------------------------------
@@ -76,17 +65,6 @@ CREATE TABLE IF NOT EXISTS Lista_Participantes (
 
 
 -- -----------------------------------------------------
--- Table Examen
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS Examen (
-  idExamen INT NOT NULL,
-  Nombre VARCHAR(45) NULL,
-  Descripcion VARCHAR(45) NULL,
-  NoPreguntas VARCHAR(45) NULL,
-  Examencol VARCHAR(45) NULL,
-  PRIMARY KEY (idExamen));
-
--- -----------------------------------------------------
 -- Table Participantes
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS Participantes (
@@ -95,41 +73,71 @@ CREATE TABLE IF NOT EXISTS Participantes (
   PRIMARY KEY (mail));
 
 
--- -----------------------------------------------------
--- Table EvaluarEvento
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS EvaluarEvento (
-  idEvento INT NOT NULL,
-  idParticipante VARCHAR(45) NULL,
-  Calificacion VARCHAR(45) NULL,
-  Comentario VARCHAR(45) NULL,
-  PRIMARY KEY (idEvento));
+  -- -----------------------------------------------------
+  -- Table Calificacion
+  --Esta tabla se va a encargar de relacionar el resultado postumo a calificacion
+  -- -----------------------------------------------------
+   CREATE TABLE IF NOT EXISTS Calificaciones (
+    idPersona VARCHAR(100),
+    idEvento VARCHAR(50),
+    calificacion INT,
+    examen VARCHAR(100),
+    comentario VARCHAR(45) NULL
+    );
+
+
 
 
 -- -----------------------------------------------------
 -- Table Preguntas
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS Preguntas (
-  idPreguntas INT NOT NULL,
-  idExamen VARCHAR(45) NULL,
-  Pregunta VARCHAR(45) NULL,
-  Respuestas VARCHAR(45) NULL,
-  idCategoria VARCHAR(45) NULL,
-  Obligatoria VARCHAR(45) NULL,
-  PRIMARY KEY (idPreguntas));
+  banco VARCHAR(100) NOT NULL,
+  texto VARCHAR (140) NOT NULL,
+  tipo VARCHAR(20) NOT NULL,
+  categoria VARCHAR(30) NOT NULL,
+  respuestas VARCHAR(150) NOT NULL,
+  correcta VARCHAR(30),
+  obligatoria BOOLEAN
+  );
+  insert into Preguntas values('DEMO', 'El caballo blanco es blanco?','VerFal','bobas','Verdadero*Falso','Verdadero',true);
+  insert into Preguntas values('DEMO', 'De qu&eacute color es la manzana?','OpcPer','bobas','Morada*Blanca*Amarilla*Rosa','Amarilla',false);
+  insert into Preguntas values('DEMO', 'C&oacutemo se llama el ping&uumlino de linux?','OpcPer','bobas','Pepito*Juanito*No lo se*Linux','Verdadero',false);
 
-
+  insert into Preguntas values('DEMO', 'Es Lewis Hamilton el campe&oacuten del mundo?','VerFal','F1','Verdadero*Falso','Verdadero',true);
+  insert into Preguntas values('DEMO', 'Es Nico Roosberg la persona m&aacutes agradable del mundo?','VerFal','F1','Verdadero*Falso','Falso',False);
+  insert into Preguntas values('DEMO', 'Selecciona la nacionalidad de Checo Perez?','OpcPer','F1','Mexicano*Alem&aacuten*Italiani*Argentino','Mexicano',true);
+  insert into Preguntas values('DEMO', 'Es Nico Roosberg la persona m&aacutes agradable del mundo?','VerFal','F1','Verdadero*Falso','Falso',False);
+  insert into Preguntas values('DEMO', 'Es el campe&oacuten mundial m&aacutes joven del mundo?','OpcPer','F1','Vettel*Riccardio*Botas*Gutierrez','Vettel',true);
 -- -----------------------------------------------------
--- Table Categoria
+-- Table Examen con bancos
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS Categoria (
-  idCategoria INT NOT NULL,
-  idExamen VARCHAR(45) NULL,
-  nombreCategoria VARCHAR(45) NULL,
-  porcentaje VARCHAR(45) NULL,
-  PRIMARY KEY (idCategoria));
-
-
+CREATE TABLE IF NOT EXISTS BancosExamenes(
+  banco VARCHAR(100),
+  categoria VARCHAR(100),
+  noObl INT,
+  noOpc INT,
+  examenAsociado VARCHAR(100)
+  );
+  insert into BancosExamenes values('DEMO','bobas','1','1','cosasLalo');
+  insert into BancosExamenes values('DEMO','F1','2','1','cosasLalo');
+    -- -----------------------------------------------------
+    -- Table Evento
+    -- -----------------------------------------------------
+    CREATE TABLE IF NOT EXISTS Evento (
+      evento VARCHAR(100),
+      examen VARCHAR(100),
+      tipo VARCHAR(10) NOT NULL,
+      fechaInicio VARCHAR(45) ,
+      horaInicio VARCHAR(45),
+      fechaFin VARCHAR(45) ,
+      horaFin VARCHAR(45),
+      duracion INT ,
+      tema VARCHAR(45) ,
+      banco VARCHAR(100),
+      PRIMARY KEY (idEvento));
+insert into Evento values('Mi_amigo','DemostracionExamenAbierto','Abierto','2016-01-12','0:00', '2016-01-15','0:00','30','cosasLalo','DEMO');
+insert into Evento values('Mi_amigoC','DemostracionExamenAbierto','Cerrado','2016-01-12','0:00', '2016-01-12','0:30','30','cosasLalo','DEMO');
 -- -----------------------------------------------------
 -- Table Tema
 -- -----------------------------------------------------
@@ -150,7 +158,7 @@ CREATE TABLE IF NOT EXISTS Comentarios (
   idUsuario VARCHAR(45) NULL,
   FechaHora VARCHAR(45) NULL,
   PRIMARY KEY (idComentarios));
-  
+
   -- -----------------------------------------------------
 -- Table Foro
 -- -----------------------------------------------------

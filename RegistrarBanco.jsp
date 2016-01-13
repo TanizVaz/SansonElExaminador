@@ -15,10 +15,13 @@
     </select>
     <br>
     <div name="categoias">
+
       Grupos:<input name="categoria0" type="text" placeholder="nombra la categor&iacute;a"><br>
       N&uacute;mero obligatorias <input type="number" name="noObl" min="0"><br>
-      N&uacute;mero opcionales <input type="number" name="noOpc" min=""><br>
+      N&uacute;mero opcionales <input type="number" name="noOpc" min="0"><br>
+
     </div>
+
 
   </form>
 

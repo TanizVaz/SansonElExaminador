@@ -54,7 +54,7 @@ footer {
 	background: #66ccff;
 	color: #fff;
 	height: 30px !important;
-	position: absolute;
+	position: fixed;
 	bottom: 0;
 	width: 100%;
 }

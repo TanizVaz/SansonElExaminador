@@ -57,7 +57,7 @@
 
 	<%if (session.getAttribute(Attribute.Session.CURRENT_USER) != null) {%>
 <% if(((UserValueObject) session.getAttribute(Attribute.Session.CURRENT_USER)).getRole().equals("INSTRUCTOR")) { %>
-<%@include file="menuInstructor.frame.jsp" %>
+<%@include file="mainInstructor.frame.jsp" %>
  			<br>
 			<div class="container">
 				<section class="main row">
@@ -123,7 +123,7 @@
 			</div>
 </div>
 <%} else{if(((UserValueObject) session.getAttribute(Attribute.Session.CURRENT_USER)).getRole().equals("PARTICIPANTE")) {%>
-<%@include file="menuParticipante.frame.jsp" %>
+<%@include file="mainParticipante.frame.jsp" %>
 <br>
 
 <div class="container">
@@ -182,7 +182,7 @@
  </section>
  </div>
  <%} else{if(((UserValueObject) session.getAttribute(Attribute.Session.CURRENT_USER)).getRole().equals("ADMIN")) {  %>
-<%@include file="menuAdministrador.frame.jsp" %>
+<%@include file="mainAdministrador.frame.jsp" %>
  <br>
 			<div class="container">
 				<section class="main row">

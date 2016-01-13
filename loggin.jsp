@@ -1,25 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
-<head>
-	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/estilos.css">
-	<link rel="stylesheet" href="css/datepicker.css">
-<TITLE>Iniciar sesi&#243;n</TITLE>
-</head>
+	<head>
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/estilos.css">
+		<link rel="stylesheet" href="css/datepicker.css">
+		<TITLE>Iniciar sesi&#243;n</TITLE>
+	</head>
 <body class="bg-1">
-<%@include file="header.frame.jsp" %>
-<%@include file="messages.frame.jsp" %>
-
-<form action="security" method="POST">
-<input type="hidden" name="action" value="authenticate">
-
-
-	<header>
+<header>
 		<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
 			<div class="container">
 				<div class="navbar-header">
@@ -29,11 +20,11 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a href="index.jsp" class="navbar-brand">Plataforma de ex&#225;menes</a>
 				</div>
+				<div class="col-md-4"></div>
 				<div class="collapse navbar-collapse" id="navegacion-fm">
-					<ul class="nav nav-pills">
-						<li ><a href="index.jsp">Inicio</a></li>
+					<ul class="nav nav-pills col-md-8">
+						<li><a href="index.jsp">Inicio</a></li>
 						<li class="dropdown">
 							<a href="tutos.jsp" class="dropdown-toggle" data-toggle="dropdown" role="button">
 								Tutoriales <span class="caret"></span>
@@ -51,19 +42,21 @@
 			</div>
 		</nav>
 	</header>
-	
-    <div <div class="container well bg-2">
-<div class="form-group boxlogin">
-    		<p><br/></p>
-  		<div class="row">
-  		<div class="col-md-50"></div>
-  		<div class="col-md-30">
-  		<div class="panel panel-default">
-  		<div class="panel-body">
-    		<div class="page-header">
-<img src="img/log.png" alt="Iniciar Sesi&oacute;n" width="100" height="100" class="img-circle img-responsive center-block">
-  		<h3>&Aacute;rea de Acceso</h3>
-		</div>
+
+<form action="security" method="POST">
+	<input type="hidden" name="action" value="authenticate">
+    	<div class="container well bg-2">
+					<div class="form-group boxlogin">
+    					<p><br/></p>
+  						<div class="row">
+  							<div class="col-md-50"></div>
+  							<div class="col-md-30">
+  									<div class="panel panel-default">
+  											<div class="panel-body">
+										    		<div class="page-header">
+																<img src="img/log.png" alt="Iniciar Sesi&oacute;n" width="100" height="100" class="img-circle img-responsive center-block">
+															  <h3>&Aacute;rea de Acceso</h3>
+														</div>
 		<form action="autenticar" method="POST" onsubmit="return checkPass();">
   		<div class="form-group">
 
@@ -99,15 +92,13 @@
   </body>
 	<br>
 	<br>
-	<footer>
-		<div class="container">
-			<div class="row">
-				<div class="col-xs-6">
-					<p>We're not muggles</p>
+		<footer>
+				<div class="row">
+					<div class="col-md-2 col-md-offset-5" >
+						<p>We're not muggles</p>
+					</div>
 				</div>
-			</div>
-		</div>
-	</footer>
+		</footer>
 
 	<script src="js/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>

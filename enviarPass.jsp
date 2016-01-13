@@ -1,6 +1,6 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
+
 <%@ page import="mx.ipn.upiicsa.sansonelexaminador.util.Attribute"%>
 <!DOCTYPE html>
 <html lang="es">
@@ -13,54 +13,54 @@
 <TITLE>Recuperar Contraseña</TITLE>
 </head>
 	<body class="bg-1">
-<%@include file="header.frame.jsp" %>
-<%@include file="messages.frame.jsp" %>
-	<header>
-		<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
-			<div class="container">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navegacion-fm">
-						<span class="sr-only">Desplegar / Ocultar Menu</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<a href="#" class="navbar-brand">Plataforma de ex&#225;menes</a>
-				</div>
-				<div class="collapse navbar-collapse" id="navegacion-fm">
-					<ul class="nav nav-pills">
-						<li><a href="index.jsp">Inicio</a></li>
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
-								Tutoriales <span class="caret"></span>
-							</a>
-							<ul class="dropdown-menu" role="menu">
-								<li><a href="#">Crear una cuenta</a></li>
-								<li><a href="#">Ingresar a un evento</a></li>
-								<li><a href="#">Consultar el foro de preguntas</a></li>
-							</ul>
-						</li>
-						<li><a href="preguntas.jsp">Foro de preguntas </a></li>
-						<li><a href="soporte.jsp">Soporte</a></li>
-					</ul>
-				</div>
-			</div>
-		</nav>
-	</header>
+	</head>
+		<body class="bg-1">
+			<header>
+					<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+						<div class="container">
+							<div class="navbar-header">
+								<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navegacion-fm">
+									<span class="sr-only">Desplegar / Ocultar Menu</span>
+									<span class="icon-bar"></span>
+									<span class="icon-bar"></span>
+									<span class="icon-bar"></span>
+								</button>
+							</div>
+							<div class="col-md-4"></div>
+							<div class="collapse navbar-collapse" id="navegacion-fm">
+								<ul class="nav nav-pills col-md-8">
+									<li><a href="index.jsp">Inicio</a></li>
+									<li class="dropdown">
+										<a href="tutos.jsp" class="dropdown-toggle" data-toggle="dropdown" role="button">
+											Tutoriales <span class="caret"></span>
+										</a>
+										<ul class="dropdown-menu" role="menu">
+											<li><a href="tutos.jsp#tuto1">Crear una cuenta</a></li>
+											<li><a href="tutos.jsp#tuto2">Ingresar a un evento</a></li>
+											<li><a href="tutos.jsp#tuto3">Consultar el foro de preguntas</a></li>
+										</ul>
+									</li>
+									<li><a href="preguntas.jsp">Foro de preguntas </a></li>
+									<li><a href="soporte.jsp">Soporte</a></li>
+								</ul>
+							</div>
+						</div>
+					</nav>
+				</header>
 	  	    <div class="container well bg-2">
 			<h1>Recuperar Contrase&#241;a </h1>
         <div class="row">
 		<img src="img/recontra.png" alt=" " class="img-rounded img-responsive center-block">
 		<fieldset>
 			<h3>Ingresa tu correo para que te enviemos tu contrase&#241;a &#58;</h3>
-			
+
 			<label class="col-sm-2 control-label" for="fecha"> </label>
 		  </fieldset>
         </div>
 		<br>
 		<form class="form-horizontal" action="enviarPass" method="POST">
 			<br>
-			
+
   		<div class="form-group">
                     <label class="col-sm-2 control-label" for="Email">E&#45;mail&#58;</label>
                     <div class="input-group col-sm-3">
@@ -68,7 +68,7 @@
   			<input type="email" class="form-control" name="email" id="email" placeholder="E&#45;mail" required="required">
                     </div>
   		</div>
-	
+
 		<div class="radio">
 		  <label>
 		    <input type="radio" name="option" id="optionsRadios1" value="real" checked>
@@ -97,17 +97,13 @@
 <% if(session.getAttribute(Attribute.Session.CURRENT_USER) == null) { %>
 <a href="loggin.jsp">Login</a>
 <% } %>
-	<footer>
-		<div class="container">
-			<div class="row">
-				<div class="col-xs-6">
-					<p>We're not muggles</p>
-				</div>
+<footer>
+		<div class="row">
+			<div class="col-md-2 col-md-offset-5" >
+				<p>We're not muggles</p>
 			</div>
 		</div>
-
-	</footer>
-
+</footer>
 	<script src="js/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 <script type="text/javascript">

@@ -3,7 +3,8 @@ var tiempo = document.getElementById('muestReloj').value;
 var tiempoArray = tiempo.split(':');
 var min = Number(tiempoArray[0]);
 var seg = Number(tiempoArray[1]);
-var rojo = '<font-color="red"';
+var rojo = '<font color="red">';
+var rojocerrado ='</font>';
 function mueveReloj(){
    //console.log(min+'Segs   '+ seg);
    if(min >= 1){
@@ -14,13 +15,16 @@ function mueveReloj(){
  }else if( min === 0 && seg === 0){
    alert('Ha llegado tu hora');
  }
- if(min >= 0 && seg > 0){
-    seg--;
-   	setTimeout("mueveReloj()",1000);
-  }
     //document.getElementById('muestReloj').value = min.toString()+':'+seg.toString();
-    if( min <=10 ){
-
+    if( min <=15 ){
+      document.getElementById('pintaReloj').innerHTML = rojo+ +min.toString()+':'+seg.toString()+rojocerrado;
+    }else{
+    document.getElementById('pintaReloj').innerHTML = + min.toString()+':'+seg.toString();
     }
-    document.getElementById('pintaReloj').innerHTML = min.toString()+':'+seg.toString();
+    if(min >= 0 && seg > 0){
+       seg--;
+       setTimeout("mueveReloj()",1000);
+     }
+
+
 }

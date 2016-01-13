@@ -5,7 +5,7 @@
   </head>
   <body>
 <form class="" action="index.html" method="post">
-
+  <input type="hidden" name="categoriaNum" value="1">
     Nombre del banco: <input type="text" name="banco" placeholder="Conjunto de preguntas asociadas"><br>
     <!--El email debería estar como oculto o solicitarlo de la sesion -->
     <div name="categoria0" >

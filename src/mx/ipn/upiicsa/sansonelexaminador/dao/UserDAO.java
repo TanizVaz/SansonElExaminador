@@ -122,5 +122,23 @@ public class UserDAO extends SansonElExaminadorMySqlDAO{
 		
 		
 	}
+	
+	public int Foro(String tema_pregunta, String pregunta_foro) throws SQLException{
+		ResultSet rs=null;
+		Statement stmt = null;
+		try{
+			String sql = "insert into Foro (Tema_Pregunta, Pregunta_Foro)values"+
+					 "('"+tema_pregunta+"','"+pregunta_foro+"')";
+			System.out.println("UsuarioDAO.Foro() - sql [ " + sql + "]");
+			stmt = createStatement();
+		return stmt.executeUpdate(sql);
+		return rs;
+		}finally{
+			closeStatement(stmt);
+			closeConnection();
+		}
+		
+		
+	}
 
 }

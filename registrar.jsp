@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
+
 <%@ page import="mx.ipn.upiicsa.sansonelexaminador.util.Attribute"%>
 <!DOCTYPE html>
 <html lang="es">
@@ -13,44 +13,41 @@
 <TITLE>Registrarse</TITLE>
 </head>
 	<body class="bg-1">
-<%@include file="header.frame.jsp" %>
-<%@include file="messages.frame.jsp" %>
-<header>
-		<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
-			<div class="container">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navegacion-fm">
-						<span class="sr-only">Desplegar / Ocultar Menu</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<a href="index.jsp" class="navbar-brand">Plataforma de ex&#225;menes</a>
-				</div>
-				<div class="collapse navbar-collapse" id="navegacion-fm">
-					<ul class="nav nav-pills">
-						<li><a href="index.jsp">Inicio</a></li>
-						<li class="dropdown">
-							<a href="tutos.jsp" class="dropdown-toggle" data-toggle="dropdown" role="button">
-								Tutoriales <span class="caret"></span>
-							</a>
-							<ul class="dropdown-menu" role="menu">
-								<li><a href="tutos.jsp#tuto1">Crear una cuenta</a></li>
-								<li><a href="tutos.jsp#tuto2">Ingresar a un evento</a></li>
-								<li><a href="tutos.jsp#tuto3">Consultar el foro de preguntas</a></li>
+		<header>
+				<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+					<div class="container">
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navegacion-fm">
+								<span class="sr-only">Desplegar / Ocultar Menu</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
+						</div>
+						<div class="col-md-4"></div>
+						<div class="collapse navbar-collapse" id="navegacion-fm">
+							<ul class="nav nav-pills col-md-8">
+								<li><a href="index.jsp">Inicio</a></li>
+								<li class="dropdown">
+									<a href="tutos.jsp" class="dropdown-toggle" data-toggle="dropdown" role="button">
+										Tutoriales <span class="caret"></span>
+									</a>
+									<ul class="dropdown-menu" role="menu">
+										<li><a href="tutos.jsp#tuto1">Crear una cuenta</a></li>
+										<li><a href="tutos.jsp#tuto2">Ingresar a un evento</a></li>
+										<li><a href="tutos.jsp#tuto3">Consultar el foro de preguntas</a></li>
+									</ul>
+								</li>
+								<li><a href="preguntas.jsp">Foro de preguntas </a></li>
+								<li><a href="soporte.jsp">Soporte</a></li>
 							</ul>
-						</li>
-						<li><a href="preguntas.jsp">Foro de preguntas </a></li>
-						<li><a href="soporte.jsp">Soporte</a></li>
-					</ul>
-				</div>
-			</div>
-		</nav>
-	</header>
-
+						</div>
+					</div>
+				</nav>
+			</header>
         <div class="container">
             <h1>&Aacute;rea de Registro</h1>
-        </div>   
+        </div>
     <div class="container well bg-2">
         <div class="row">
 		<img src="img/reg.png" alt="Iniciar Sesi&oacute;n" class="img-rounded img-responsive center-block">
@@ -126,7 +123,7 @@
                     </div>
   		</div>
 		  <br>
-		
+
 		  <br>
 		<fieldset>
 			<legend>Contesta las preguntas de seguridad&#58;</legend>
@@ -172,20 +169,13 @@
 	<br>
 <br>
 <br>
-<br>
-
-<% if(session.getAttribute(Attribute.Session.CURRENT_USER) == null) { %>
-<a href="loggin.jsp">Login</a>
-<% } %>
 
 	<footer>
-		<div class="container">
 			<div class="row">
-				<div class="col-xs-6">
+				<div class="col-md-2 col-md-offset-5" >
 					<p>We're not muggles</p>
 				</div>
 			</div>
-		</div>
 	</footer>
 
 	<script src="js/jquery.js"></script>

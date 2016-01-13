@@ -26,7 +26,6 @@ function addingPregunta() {
 
 function cambioRadio(){
   for(var i = 0; i < contadorPreguntas; i++){
-
     var selection = document.getElementsByName('tipo'+i.toString());//Selecciono cada radio button
       for (var j = 0; j < selection.length; j++) {
         console.log(j);

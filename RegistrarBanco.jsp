@@ -1,30 +1,29 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
   <html>
   <head>
     <meta charset="utf-8">
-    <title>Registra tu banco de preguntas</title>
+    <title>Registra informaci&oacute;n de tu banco de preguntas</title>
   </head>
   <body>
 <form class="" action="index.html" method="post">
 
-    Banco: <input type="text" name="banco"><br>
+    Nombre del banco: <input type="text" name="banco" placeholder="Conjunto de preguntas asociadas"><br>
     <!--El email debería estar como oculto o solicitarlo de la sesion -->
-    <select name="tipo">
-      <option value="Abierto">Abierto</option>
-        <option value="Cerrado">Cerrado</option>
-    </select>
-    <br>
-    <div name="categoias">
+    <div name="categoria0" >
+			Especifiaciones por categoria<br><br>
+			Categoria <input type="text" name="nombreCat0" placeholder="Ponle un nombre"><br><br>
+			N&uacute;mero de preguntas Obligatorias  <input type="number" name="nameObl0" value=""><br>
 
-      Grupos:<input name="categoria0" type="text" placeholder="nombra la categor&iacute;a"><br>
-      N&uacute;mero obligatorias <input type="number" name="noObl" min="0"><br>
-      N&uacute;mero opcionales <input type="number" name="noOpc" min="0"><br>
+			N&uacute;mero de preguntas Opcionales <input type="number" name="nameOpc0" value=""><br><br>
+			<div id="categorias">	</div>
+			<input type="button" value="Agregar categor&iacute;a" id="addCategoria" onclick="addCat()">
 
-    </div>
+			<br><br><br><br>
+
+			Examen al que se unen <input type="text" name="examen" ><br><br><br><br>
 
 
+		</div>
   </form>
-
+	<script src="js/RegistrarBanco.js"></script>
   </body>
 </html>

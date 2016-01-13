@@ -1,6 +1,5 @@
-<<<<<<< HEAD
-<!DOCTYPE html>
-<html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <head>
   <meta charset="utf-8">
   <title>Registro de banco de preguntas</title>
@@ -34,7 +33,7 @@
 =======
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
+
 <%@ page import="mx.ipn.upiicsa.sansonelexaminador.util.Attribute"%>
 
 <!DOCTYPE html>
@@ -85,11 +84,11 @@
 			</div>
 		</nav>
 	</header>
-	
+
 
 	  	<section class="col-md-3 hidden-xs hidden-sm">
 		<br>
-		<img src="img/persona.png" align="center" class="img-rounded" alt="id" width="180" height="170">	
+		<img src="img/persona.png" align="center" class="img-rounded" alt="id" width="180" height="170">
 				<h4>Men&#250;</h4>
 				<div class="list-group">
 					<a href="mainInstructor.html" class="list-group-item  ">Inicio</a>

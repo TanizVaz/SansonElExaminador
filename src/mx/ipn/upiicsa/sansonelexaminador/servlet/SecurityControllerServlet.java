@@ -61,6 +61,46 @@ public class SecurityControllerServlet extends HttpServlet
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		}else if(action.equals("registrarBanco")){
+			try {
+				nextView = registrarBanco(request);
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	}else if(action.equals("registrarPreguntas")){
+			try {
+				nextView = registrarPreguntas(request);
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	}else if(action.equals("registrarEvento")){
+			try {
+				nextView = registrarEvento(request);
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	}else if(action.equals("registrarInstructor")){
+			try {
+				nextView = registrarInstructor(request);
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		else{
 			nextView = Resource.ErrorPage.URL;
@@ -88,6 +128,34 @@ public class SecurityControllerServlet extends HttpServlet
 		sigue = Resource.AltaSatsfactoria.URL;
 		return sigue;
 	}
+
+	private String registrarBanco(HttpServletRequest request) throws ClassNotFoundException, SQLException {
+		String sigue=null;
+		String idUsuario = request.getParameter("id");
+		String nombreBanco = request.getParameter("banco");
+		int numCat=Integer.parseInt(request.getParameter("contador"));
+		System.out.println(numCat);
+		String nombreCat[]=new String[numCat];
+		int nameObl[]=new int[numCat];
+		int nameOpc[]=new int[numCat];
+		String examen = request.getParameter("examen");
+		UserDAO registrarBanco = new UserDAO();
+		for(int i=0;i<numCat;i++){
+			nombreCat[i] = request.getParameter("nombreCat"+String.valueOf(i));
+			nameObl[i] = Integer.parseInt(request.getParameter("nameObl"+String.valueOf(i)));
+			nameOpc[i] = Integer.parseInt(request.getParameter("nameOpc"+String.valueOf(i)));
+			registrarBanco.registrarBanco(nombreBanco,nombreCat[i],nameObl[i],nameOpc[i],examen,idUsuario);
+	  }
+		sigue = Resource.BancoRegistrado.URL;
+		return sigue;
+	}
+
+	private String registrarEvento(HttpServletRequest request) throws ClassNotFoundException, SQLException {
+		return "index.html";
+	}
+
+	private String registrarInstructor(HttpServletRequest request) throws ClassNotFoundException, SQLException {return "index.html";}
+	private String registrarPreguntas(HttpServletRequest request) throws ClassNotFoundException, SQLException {return "index.html";}
 
 	/**
 	 * Metodo para login
@@ -125,6 +193,7 @@ public class SecurityControllerServlet extends HttpServlet
 					if(usuario != null) {
 
 						request.getSession().setAttribute(Attribute.Session.CURRENT_USER, usuario);
+						nextView=Resource.Main.URL;
 					}
 					else {
 

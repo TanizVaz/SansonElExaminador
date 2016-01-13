@@ -1,4 +1,4 @@
-ackage mx.ipn.upiicsa.sansonelexaminador.security;
+package mx.ipn.upiicsa.sansonelexaminador.security;
 
 import mx.ipn.upiicsa.sansonelexaminador.util.Message;
 import mx.ipn.upiicsa.sansonelexaminador.util.Utility;

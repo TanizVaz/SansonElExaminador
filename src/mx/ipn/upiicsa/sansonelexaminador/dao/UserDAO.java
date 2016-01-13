@@ -1,20 +1,11 @@
-package mx.ipn.upiicsa.sansonelexaminador.servlet;
+package mx.ipn.upiicsa.sansonelexaminador.dao;
 
 
-import java.io.IOException;
+import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.PreparedStatement;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import mx.ipn.upiicsa.sansonelexaminador.dao.UserDAO;
-import mx.ipn.upiicsa.sansonelexaminador.security.Resource;
-import mx.ipn.upiicsa.sansonelexaminador.util.Attribute;
-import mx.ipn.upiicsa.sansonelexaminador.util.Message;
-import mx.ipn.upiicsa.sansonelexaminador.util.Utility;
 import mx.ipn.upiicsa.sansonelexaminador.valueobject.UserValueObject;
 
 /**
@@ -23,285 +14,179 @@ import mx.ipn.upiicsa.sansonelexaminador.valueobject.UserValueObject;
  *
  */
 
-public class SecurityControllerServlet extends HttpServlet
-{
+public class UserDAO extends SansonElExaminadorMySqlDAO{
+
 	/**
 	 *
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
 	 */
-	protected void service(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
-
-		String nextView = null;
-		String action = null;
-
-		RequestDispatcher rd = null;
-
-		action = request.getParameter(Attribute.Request.ACTION);
-
-		if(action == null || action.equals("")) {
-
-			request.setAttribute(Attribute.Request.ERROR, Message.Form.NO_ACTION_PROVIDED);
-			nextView = Resource.ErrorPage.URL;
-		}
-		else if(action.equals("authenticate")) {
-
-			nextView = authenticate(request);
-		}
-		else if(action.equals("changePassword")) {
-			nextView = changePassword(request);
-		}
-		else if(action.equals("newUser")){
-			try {
-				nextView = newUser(request);
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}else if(action.equals("registrarBanco")){
-			try {
-				nextView = registrarBanco(request);
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-	}else if(action.equals("registrarPreguntas")){
-			try {
-				nextView = registrarPreguntas(request);
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-	}else if(action.equals("registrarEvento")){
-			try {
-				nextView = registrarEvento(request);
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-	}else if(action.equals("registrarInstructor")){
-			try {
-				nextView = registrarInstructor(request);
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		else{
-			nextView = Resource.ErrorPage.URL;
-			request.setAttribute(Attribute.Request.ERROR, Message.Form.NO_ACTION_PROVIDED);
-		}
-
-		rd = getServletContext().getRequestDispatcher(nextView);
-		rd.forward(request, response); // Llamar siguiente vista
-
+	public UserDAO() throws ClassNotFoundException, SQLException {
+		super();
+		System.out.println("UsuarioDAO()");
 	}
-
-	private String newUser(HttpServletRequest request) throws ClassNotFoundException, SQLException {
-		String sigue=null;
-		String nombre = request.getParameter("name");
-		String apellido = request.getParameter("lastname");
-		String id_usuario = request.getParameter("id_usuario");
-		String role = request.getParameter("rol");
-		String password = request.getParameter("password");
-		String password1 = request.getParameter("password1");
-		String res_sec1 = request.getParameter("res_sec1");
-		String res_sec2 = request.getParameter("res_sec2");
-		String res_sec3 = request.getParameter("res_sec3");
-		UserDAO newUser = new UserDAO();
-		newUser.newUser(nombre, apellido,id_usuario,role ,password,res_sec1 ,res_sec2, res_sec3);
-		sigue = Resource.AltaSatsfactoria.URL;
-		return sigue;
-	}
-
-	private String registrarBanco(HttpServletRequest request) throws ClassNotFoundException, SQLException {
-		String sigue=null;
-		String idUsuario = request.getParameter("id");
-		String nombreBanco = request.getParameter("banco");
-		int numCat=Integer.parseInt(request.getParameter("contador"));
-		System.out.println(numCat);
-		String nombreCat[]=new String[numCat];
-		int nameObl[]=new int[numCat];
-		int nameOpc[]=new int[numCat];
-		String examen = request.getParameter("examen");
-		UserDAO registrarBanco = new UserDAO();
-		for(int i=0;i<numCat;i++){
-			nombreCat[i] = request.getParameter("nombreCat"+String.valueOf(i));
-			nameObl[i] = Integer.parseInt(request.getParameter("nameObl"+String.valueOf(i)));
-			nameOpc[i] = Integer.parseInt(request.getParameter("nameOpc"+String.valueOf(i)));
-			registrarBanco.registrarBanco(nombreBanco,nombreCat[i],nameObl[i],nameOpc[i],examen,idUsuario);
-	  }
-		sigue = Resource.BancoRegistrado.URL;
-		return sigue;
-	}
-
-	private String registrarEvento(HttpServletRequest request) throws ClassNotFoundException, SQLException {
-		return "index.html";
-	}
-
-	private String registrarInstructor(HttpServletRequest request) throws ClassNotFoundException, SQLException {return "index.html";}
-	private String registrarPreguntas(HttpServletRequest request) throws ClassNotFoundException, SQLException {return "index.html";}
-
 	/**
-	 * Metodo para login
-	 * @param request
+	 *
+	 * @param idUsuario
+	 * @param password
 	 * @return
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
 	 */
-	private String authenticate(HttpServletRequest request)
+	public UserValueObject autenticar(String idUsuario, String password)
+	throws ClassNotFoundException, SQLException
 	{
-		String idUsuario  = null;
-		String password = null;
-		String nextView  = null;
+		PreparedStatement stmt = null;
+		ResultSet rs =null;
+		Connection connection = null;
 		UserValueObject usuario = null;
-
-		UserDAO dao = null;
-
 		try {
+			System.out.println("UsuarioDAO.autenticar()");
+			connection=getConnection();
+			//String sql1 = "select * from usuarios where id_usuario ='" + idUsuario + "' and password='" +
+	          //                                    password + "'";
+	        String sql = "select * from usuarios where id_usuario = ? and password = ? ";
+			stmt=connection.prepareStatement(sql);
+			stmt.setString(1, idUsuario);
+			stmt.setString(2, password);
+			System.out.println("UsuarioDAO.autenticar() - sql [ " + sql + "]");
 
-			idUsuario = request.getParameter("id_usuario");
-			password = request.getParameter("password");
 
-			if (Utility.hasAnStringThatIsNullOrEmpty(idUsuario,password)) {
+			rs = stmt.executeQuery();
 
-				request.setAttribute(Attribute.Request.ERROR, Message.Form.INCOMPLETE_DATA);
-				nextView = Resource.ErrorPage.URL;
+
+			if(rs.next()) {
+				usuario = new UserValueObject();
+
+				usuario.setId(rs.getString("id_usuario"));
+				usuario.setFirstName(rs.getString("firstname"));
+				usuario.setLastName(rs.getString("lastname"));
+				usuario.setRole(rs.getString("role"));
+				usuario.setStatus(rs.getString("estatus"));
+				usuario.setActivationKey(rs.getString("clave_activacion"));
+				usuario.setTemporaryPassword(rs.getBoolean("password_es_temporal"));
+				usuario.setPasswordMaxAge(rs.getInt("password_es_temporal"));
+				usuario.setPasswordLastUpdate(rs.getDate("ultima_actualizacion_password"));
 			}
-			else {
 
-				nextView = Resource.IndexPage.URL;
-
-				if(request.getSession().getAttribute(Attribute.Session.CURRENT_USER) == null) {
-
-					dao = new UserDAO();
-					usuario = dao.autenticar(idUsuario, password);
-
-					if(usuario != null) {
-
-						request.getSession().setAttribute(Attribute.Session.CURRENT_USER, usuario);
-						nextView=Resource.Main.URL;
-					}
-					else {
-
-						request.getSession().removeAttribute(Attribute.Session.CURRENT_USER);
-						request.setAttribute(Attribute.Request.MESSAGE, Message.Credentials.NOT_VALID_USER_PASSWORD);
-						nextView = Resource.LoginPage.URL;
-					}
-				}
-				else {
-
-					request.setAttribute(Attribute.Request.MESSAGE, Message.Session.USER_ALREADY_LINKED_TO_SESSION);
-				}
-			}
-			return nextView;
-
-		} catch (ClassNotFoundException ex) {
-
-			request.setAttribute(Attribute.Request.ERROR, ex.getMessage());
-			nextView = Resource.ErrorPage.URL;
-			return nextView;
-
-		} catch (NoClassDefFoundError ex) {
-
-			request.setAttribute(Attribute.Request.ERROR, ex.getMessage());
-			nextView = Resource.ErrorPage.URL;
-			return nextView;
-
-		} catch (SQLException ex) {
-
-			request.setAttribute(Attribute.Request.ERROR, ex.getMessage());
-			nextView = Resource.ErrorPage.URL;
-			return nextView;
+			return usuario;
+		}
+		finally {
+			closeResultSet(rs);
+			closeStatement(stmt);
+			closeConnection();
 		}
 	}
 	/**
 	 *
-	 * Metodo para cambiar Contrasena
+	 * @param idUsuario
+	 * @param currentPassword
+	 * @param newPassword
+	 * @return
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
 	 */
-	private String changePassword(HttpServletRequest request)
+	public int updatePassword(String idUsuario, String currentPassword, String newPassword)
+	throws ClassNotFoundException, SQLException
 	{
-		String idUsuario  = null;
-		String currentPassword1 = null;
-		String currentPassword2= null;
-		String newPassword = null;
-
-		String nextView  = null;
-		UserValueObject usuario = null;
-
-		UserDAO dao = null;
-
+		PreparedStatement stmt = null;
+		Connection connection = null;
 		try {
+			System.out.println("UsuarioDAO.autenticar()");
+			connection=getConnection();
+			//String sql = "update usuarios set password = \'" + newPassword+ "\'where id_usuario ='" +
+				//	idUsuario + "' and password='" + currentPassword + "'";
+			String sql = "update usuarios set password = ? where id_usuario =? and password=?";
+			stmt=connection.prepareStatement(sql);
+			stmt.setString(1, newPassword);
+			stmt.setString(2, idUsuario);
+			stmt.setString(3, currentPassword);
+			System.out.println("UsuarioDAO.autenticar() - sql [ " + sql + "]");
 
-			idUsuario = request.getParameter("id_usuario");
-			currentPassword1 = request.getParameter("currentPassword1");
-			currentPassword2 = request.getParameter("currentPassword2");
-			newPassword = request.getParameter("newPassword");
-
-			if (Utility.hasAnStringThatIsNullOrEmpty(idUsuario, currentPassword1, currentPassword2, newPassword) ) {
-
-				request.setAttribute(Attribute.Request.ERROR, Message.Form.INCOMPLETE_DATA);
-				nextView = Resource.ErrorPage.URL;
-			}
-			else {
-				if(request.getSession().getAttribute(Attribute.Session.CURRENT_USER) == null) {
-
-					dao = new UserDAO();
-
-					if(currentPassword1.equals(currentPassword2)) {
-
-						// !!!!!
-						dao.updatePassword(idUsuario, currentPassword1, newPassword);
-						request.setAttribute(Attribute.Request.MESSAGE, Message.Credentials.PASSWORD_WAS_UPDATED);
-						nextView = Resource.IndexPage.URL;
-					}
-					else {
-
-						request.setAttribute(Attribute.Request.ERROR, Message.Credentials.PASSWORDS_ARE_NOT_EQUAL);
-						nextView = Resource.IndexPage.URL;
-					}
-				}
-				else {
-
-					request.setAttribute(Attribute.Request.ERROR, Message.Session.NO_USER_LINKED_TO_SESSION);
-					nextView = Resource.IndexPage.URL;
-				}
-
-			}
-			return nextView;
-
-		} catch (ClassNotFoundException ex) {
-
-			request.setAttribute(Attribute.Request.ERROR, ex.getMessage());
-			nextView = Resource.ErrorPage.URL;
-			return nextView;
-
-		} catch (NoClassDefFoundError ex) {
-
-			request.setAttribute(Attribute.Request.ERROR, ex.getMessage());
-			nextView = Resource.ErrorPage.URL;
-			return nextView;
-
-		} catch (SQLException ex) {
-
-			request.setAttribute(Attribute.Request.ERROR, ex.getMessage());
-			nextView = Resource.ErrorPage.URL;
-			return nextView;
+			return stmt.executeUpdate();
+		}
+		finally {
+			closeStatement(stmt);
+			closeConnection();
 		}
 	}
 
+	public int newUser(String nombre, String apellido,String idUsuario,String role ,String password,String res_sec1 ,String res_sec2, String res_sec3)
+		throws ClassNotFoundException, SQLException
+		{
+			PreparedStatement stmt = null;
+		Connection connection = null;
+		int vigencia = 5;
+		try{
+			System.out.println("UsuarioDAO.newUser()");
+			connection=getConnection();
+			//String sql = "insert into usuarios (id_usuario,password,firstname,lastname,role,estatus,clave_activacion,password_es_temporal,
+			//vigencia_password,ultima_actualizacion_password,res_sec1,res_sec2,res_sec3)values"+
+			//		 "('"+idUsuario+"','"+password+"','"+nombre+"','"+apellido+"','"+role+"','ACTIVO',null,false,'"+vigencia+"',curdate(),'
+			//"+res_sec1+"','"+res_sec2+ "','"+res_sec3+"')";
+			String sql = "insert into usuarios (id_usuario,password,firstname,lastname,role,estatus,clave_activacion,password_es_temporal,vigencia_password,ultima_actualizacion_password,res_sec1,res_sec2,res_sec3)values"+
+					 "(?,?,?,?,?,?,?,?,?,curdate(),?,?,?)";
+			stmt=connection.prepareStatement(sql);
+			stmt.setString(1, idUsuario);
+			stmt.setString(2, password);
+			stmt.setString(3, nombre);
+			stmt.setString(4, apellido);
+			stmt.setString(5, role);
+			stmt.setString(6, "ACTIVO");
+			stmt.setString(7, "null");
+			stmt.setInt(8, 0);
+			stmt.setInt(9, vigencia);
+			stmt.setString(10, res_sec1);
+			stmt.setString(11, res_sec2);
+			stmt.setString(12, res_sec3);
+			System.out.println("UsuarioDAO.newUser() - sql [ " + sql + "]");
+		return stmt.executeUpdate();
+		}finally{
+			closeStatement(stmt);
+			closeConnection();
+		}
+
+
+	}
+	public int Foro(String tema_pregunta, String pregunta_foro) throws ClassNotFoundException,SQLException{
+		PreparedStatement stmt = null;
+	  Connection connection = null;
+	try{
+			String sql = "insert into Foro (Tema_Pregunta, Pregunta_Foro)values (?,?)";
+			stmt=connection.prepareStatement(sql);
+			stmt.setString(1, tema_pregunta);
+			stmt.setString(2, pregunta_foro);
+			System.out.println("UsuarioDAO.Foro() - sql [ " + sql + "]");
+		return stmt.executeUpdate();
+		}finally{
+			closeStatement(stmt);
+			closeConnection();
+		}
+
+
+	}
+
+
+	public int registrarBanco(String nombreBanco,String nombreCat,int nameObl,int nameOpc,String examen,String idUsuario) throws ClassNotFoundException,SQLException{
+		PreparedStatement stmt = null;
+	  Connection connection = null;
+	try{
+			String sql = "insert into BancosExamenes (banco,email,categoria,noObl,noOpc,examen)values (?,?,?,?,?,?)";
+			stmt=connection.prepareStatement(sql);
+			stmt.setString(1, nombreBanco);
+			stmt.setString(2, idUsuario);
+			stmt.setString(3, nombreCat);
+			stmt.setInt(4, nameObl);
+			stmt.setInt(5, nameOpc);
+			stmt.setString(6, examen);
+			System.out.println("UsuarioDAO.registrarBanco() - sql [ " + sql + "]");
+		return stmt.executeUpdate();
+		}finally{
+			closeStatement(stmt);
+			closeConnection();
+		}
+
+
+	}
 
 }

@@ -1,4 +1,4 @@
-package mx.ipn.upiicsa.sansonelexaminador.dao;
+ackage mx.ipn.upiicsa.sansonelexaminador.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

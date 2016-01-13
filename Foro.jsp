@@ -16,6 +16,8 @@
 
 <%@include file="header.frame.jsp" %>
 <%@include file="messages.frame.jsp" %>
+<% ResultSet rs=null; %>
+<% rs=UserDAO.Foro() %>
 
 <body class="bg-1">
 	<header>
@@ -64,9 +66,17 @@
  </div>
  <div class="panel-body">
  1.-
+ <%while (rs.next()){ %>
+<% System.out.println("UsuarioDAO.Foro()"); %> 
+<% return rs= stmt.getString(tema_pregunta); %> 
+<% } %>
  </div>
  <div class="panel-body">
  2.-
+  <%while (rs.next()){ %>
+<% System.out.println("UsuarioDAO.Foro()"); %> 
+<% return rs= stmt.getString(pregunta_foro); %> 
+<% } %>
  </div>
 
  </div>

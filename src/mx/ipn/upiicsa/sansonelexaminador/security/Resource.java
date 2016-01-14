@@ -15,6 +15,10 @@ import mx.ipn.upiicsa.sansonelexaminador.util.Utility;
  */
 public class Resource {
 
+	public static class DomainServer{
+		public static final String URL ="http://localhost:8080/SansonElExaminador";
+	}
+	
 	public class IndexPage
 	{
 		public static final String URL ="/index.jsp";

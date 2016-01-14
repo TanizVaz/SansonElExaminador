@@ -48,12 +48,10 @@
 			</div>
 		</nav>
 	</header>
-<form class="" action="index.html" method="post">
-<<<<<<< HEAD
+<form class="" action="security" method="get">
+  <input type="hidden" name="action" value="RegistrarBanco">
   <input type="hidden" name="categoriaNum" value="1">
-    Nombre del banco: <input type="text" name="banco" placeholder="Conjunto de preguntas asociadas"><br>
-=======
-  	<section class="col-md-3 hidden-xs hidden-sm">
+    <section class="col-md-3 hidden-xs hidden-sm">
 		<br>
 		<img src="img/persona.png" align="center" class="img-rounded" alt="id" width="180" height="170">
 				<h4>Men&#250;</h4>
@@ -88,7 +86,7 @@
 							</div>
 
 							<br>
->>>>>>> 5dd4bb5a630bd5d2992133f41d9679f7f9272d05
+
     <!--El email debería estar como oculto o solicitarlo de la sesion -->
     <div name="categoria0" class="color2 col-md-6">
 			Especifiaciones por categoria<br><br>
@@ -107,7 +105,7 @@
 			<p><br>N&uacute;mero de preguntas Opcionales
 			</p><input type="number" name="nameOpc0" value=""><br><br>
 			<div id="categorias">	</div>
-			<button type="submit" class="btn btn-info center-block" value="Agregar categor&iacute;a" id="addCategoria" onclick="addCat()">
+			<button type="button" class="btn btn-info center-block" value="Agregar categor&iacute;a" id="addCategoria" onclick="addCat()">
 			<span class="glyphicon glyphicon-ok"></span>  Agregar</a>
 					</button>
 			<p><br>
@@ -116,6 +114,11 @@
 			<span class="input-group-addon glyphicon glyphicon-file" id="basic-addon1"></span>
 			<input type="text" name="examen" class="form-control" placeholder="Ponle un nombre" aria-describedby="basic-addon1">
 			</div><p>
+
+      <button type="submit" class="btn btn-info center-block" value="Enviar" >
+			<span class="glyphicon glyphicon-ok"></span>  Enviar</a>
+					</button>
+
 			 </section></div>
   </form>
 

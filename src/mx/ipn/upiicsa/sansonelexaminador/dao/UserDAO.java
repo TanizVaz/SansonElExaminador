@@ -152,6 +152,9 @@ public class UserDAO extends SansonElExaminadorMySqlDAO{
 		PreparedStatement stmt = null;
 	  Connection connection = null;
 	try{
+		System.out.println("UsuarioDAO.foro()");
+		connection=getConnection();
+
 			String sql = "insert into Foro (Tema_Pregunta, Pregunta_Foro)values (?,?)";
 			stmt=connection.prepareStatement(sql);
 			stmt.setString(1, tema_pregunta);
@@ -171,6 +174,8 @@ public class UserDAO extends SansonElExaminadorMySqlDAO{
 		PreparedStatement stmt = null;
 	  Connection connection = null;
 	try{
+		System.out.println("UsuarioDAO.registrarBanco()");
+		connection=getConnection();
 			String sql = "insert into BancosExamenes (banco,email,categoria,noObl,noOpc,examen)values (?,?,?,?,?,?)";
 			stmt=connection.prepareStatement(sql);
 			stmt.setString(1, nombreBanco);

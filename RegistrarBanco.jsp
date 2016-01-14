@@ -51,6 +51,7 @@
 <form class="" action="security" method="get">
   <input type="hidden" name="action" value="RegistrarBanco">
   <input type="hidden" name="categoriaNum" value="1">
+  <input type="hidden" name="id" value="<%=((UserValueObject) session.getAttribute(Attribute.Session.CURRENT_USER)).getId()%>">
     <section class="col-md-3 hidden-xs hidden-sm">
 		<br>
 		<img src="img/persona.png" align="center" class="img-rounded" alt="id" width="180" height="170">
